@@ -16,7 +16,7 @@
         <?php
         include 'dbKonexioa.php';
 
-        $sql = "SELECT idLogela, izena, gelaEdukiera, telebista, sukaldea, balkoia, sofa_ohea, deskripzioa, irudia, irudia1, irudia2, irudia3, irudia4, irudia5 FROM Logelak";
+        $sql = "SELECT idLogela, izena, gelaEdukiera, telebista, sukaldea, balkoia, sofa_ohea, deskripzioa, prezioa, irudia, irudia1, irudia2, irudia3, irudia4, irudia5 FROM Logelak";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
@@ -26,16 +26,15 @@
 
                 echo '<div class="room">';  // Logelaaren containerra
                 echo '<div class="room-image">'; // Irudiaren containerra
-                echo '<div class="carousel" data-images="' . implode(",", $images) . '">'; // Karrusela
+                echo '<div class="carousel" data-images="' . implode(",", $images) . '">'; 
                 echo '<button class="prev">&#9664;</button>';
-                echo '<img src="' . $row["irudia"] . '" alt="Logelaren irudia" style="width: 400px; height: 250px;">'; // Lehenengo irudia, txikia
+                echo '<img src="' . $row["irudia"] . '" alt="Logelaren irudia" style="width: 400px; height: 250px;">'; 
                 echo '<button class="next">&#9654;</button>';
                 echo '</div>';
                 echo '</div>';
                 echo '<div class="room-details">'; // Logelaren xehetasunak
-                echo '<h2>' . $row["izena"] . '</h2>';
+                echo '<h2><a href="logela.php?idLogela=' . $row["idLogela"] . '">' . $row["izena"] . '</a></h2>';
 
-                // Capacidad de personas
                 echo '<p><strong>' . $row["gelaEdukiera"] . ' pertsonentzako</strong></p>';
                 
                 // Deskripzioa logelaren azpian
@@ -44,10 +43,12 @@
                 // Ikusten dira ezaugarriak (balkoia, sukaldea, telebista, sofa-ohea)
                 echo '<p>';
                 echo ($row["balkoia"] ? '<img src="../public/balkoia.png" style="width: 30px; height: 30px;">  ' : '') . 
-                     ($row["sukaldea"] ? '<img src="../public/sukaldea.png" style="width: 30px; height: 30px;">  ' : '') .
+                     ($row["sukaldea"] ? '<img src="../public/sukaldea.png" style="width: 30px; height: 30px;">  ' : '') . 
                      ($row["telebista"] ? '<img src="../public/telebista.png" style="width: 30px; height: 30px;">  ' : '') .  
                      ($row["sofa_ohea"] ? '<img src="../public/sofa-ohea.png" style="width: 30px; height: 30px;">  ' : '');
                 echo '</p>';
+                
+                echo '<p class="room-price" style="text-align: right; font-weight: bold;">' . $row["prezioa"] . '€ / gaua</p>';
 
                 echo '</div>';
                 echo '</div>';
