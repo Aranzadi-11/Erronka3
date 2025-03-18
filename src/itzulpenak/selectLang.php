@@ -15,6 +15,14 @@
                 echo "selected";
             }
         ?>>EUS</option>
+
+        <option value="esp" <?php
+            if (isset($_POST["selectedLang"]) && $_POST["selectedLang"] == "esp") {
+                echo "selected";
+            } else if (!isset($_POST["selectedLang"]) && isset($_SESSION["_LANGUAGE"]) && $_SESSION["_LANGUAGE"] == "esp") {
+                echo "selected";
+            }
+        ?>>ESP</option>
     </select>
     
 </form>

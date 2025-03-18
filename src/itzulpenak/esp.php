@@ -1,6 +1,6 @@
 <?php
 
-//ingelesa
+//gaztelania
 return [
 
 ];
