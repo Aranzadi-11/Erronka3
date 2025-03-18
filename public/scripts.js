@@ -1,17 +1,34 @@
-document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll(".carousel").forEach(carousel => {
-        let images = carousel.getAttribute("data-images").split(",");
-        let imgElement = carousel.querySelector("img");
+document.addEventListener('DOMContentLoaded', function() {
+    const carousels = document.querySelectorAll('.carousel');
+
+    carousels.forEach(carousel => {
+        const prevButton = carousel.querySelector('.prev');
+        const nextButton = carousel.querySelector('.next');
+        const images = carousel.querySelectorAll('img');
         let currentIndex = 0;
 
-        carousel.querySelector(".prev").addEventListener("click", () => {
+        // Ocultar botones si hay solo una imagen
+        if (images.length <= 1) {
+            prevButton.style.display = 'none';
+            nextButton.style.display = 'none';
+        }
+
+        prevButton.addEventListener('click', function() {
             currentIndex = (currentIndex - 1 + images.length) % images.length;
-            imgElement.src = images[currentIndex];
+            updateCarousel();
         });
 
-        carousel.querySelector(".next").addEventListener("click", () => {
+        nextButton.addEventListener('click', function() {
             currentIndex = (currentIndex + 1) % images.length;
-            imgElement.src = images[currentIndex];
+            updateCarousel();
         });
+
+        function updateCarousel() {
+            images.forEach((img, index) => {
+                img.style.display = index === currentIndex ? 'block' : 'none';
+            });
+        }
+
+        updateCarousel(); // Inicializa el carrusel
     });
 });

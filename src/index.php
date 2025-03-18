@@ -10,12 +10,10 @@
 <body>
 
     <?php include 'header.php'; ?>
-
     <h1 style="text-align: center; margin-top: 20px;">Hotelaren Logelak</h1>
     <div id="rooms-container">
         <?php
         include 'dbKonexioa.php';
-
         $sql = "SELECT idLogela, izena, gelaEdukiera, telebista, sukaldea, balkoia, sofa_ohea, deskripzioa, prezioa, irudia, irudia1, irudia2, irudia3, irudia4, irudia5 FROM Logelak";
         $result = $conn->query($sql);
 
@@ -24,17 +22,22 @@
                 // Filtratzen irudiak
                 $images = array_filter([$row["irudia"], $row["irudia1"], $row["irudia2"], $row["irudia3"], $row["irudia4"], $row["irudia5"]]);
 
-                echo '<div class="room">';  // Logelaaren containerra
-                echo '<div class="room-image">'; // Irudiaren containerra
+                echo '<div class="room">';  
+                echo '<div class="room-image">'; 
                 echo '<div class="carousel" data-images="' . implode(",", $images) . '">'; 
-                echo '<button class="prev">&#9664;</button>';
-                echo '<img src="' . $row["irudia"] . '" alt="Logelaren irudia" style="width: 400px; height: 250px;">'; 
-                echo '<button class="next">&#9654;</button>';
+                if (count($images) > 1) {
+                    echo '<button class="prev">&#9664;</button>';
+                }
+                echo '<img src="' . $row["irudia"] . '" alt="Logelaren irudia" class="carousel-image" style="width: 400px; height: 250px;">'; 
+                if (count($images) > 1) {
+                    echo '<button class="next">&#9654;</button>';
+                }
                 echo '</div>';
                 echo '</div>';
                 echo '<div class="room-details">'; // Logelaren xehetasunak
-                echo '<h2><a href="logela.php?idLogela=' . $row["idLogela"] . '">' . $row["izena"] . '</a></h2>';
-
+                echo '<div class="logela-links a">';
+                echo '<h2><a href="logela.php?idLogela=' . $row["idLogela"] . '" title="Hemen klikatu informazio gehiago lortzeko">' . $row["izena"] . '</a></h2>';
+                echo '</div>';
                 echo '<p><strong>' . $row["gelaEdukiera"] . ' pertsonentzako</strong></p>';
                 
                 // Deskripzioa logelaren azpian

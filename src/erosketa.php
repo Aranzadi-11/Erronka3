@@ -1,8 +1,6 @@
 <?php
 include 'dbKonexioa.php';
 
-session_start();
-
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php'); // Si no está logueado, redirige a login
     exit();

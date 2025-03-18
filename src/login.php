@@ -1,14 +1,10 @@
 <?php
 include 'dbKonexioa.php';
 
-session_start();
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Recogemos los datos del formulario
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Consultamos la base de datos para verificar las credenciales
     $sql = "SELECT idBezeroa, erabiltzaileIzena, pasahitza FROM bezeroak WHERE erabiltzaileIzena = '$username'";
     $result = $conn->query($sql);
 
@@ -21,10 +17,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header('Location: index.php'); 
             exit();
         } else {
-            $error = "Usuario o contraseña incorrectos.";
+            $error = "Erabiltzaile izena edo pasahitz okerrak.";
         }
     } else {
-        $error = "Usuario no encontrado.";
+        $error = "Erabiltzailea ez da aurkitu.";
     }
 
     $conn->close();
@@ -60,6 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <button type="submit" class="submit-button">Sartu</button>
         </form>
 
+        <br>
         <div class="register-link">
             <p>Ez daukazula konturik? <a href="registratu.php">Erregistratu hemen</a></p>
         </div>

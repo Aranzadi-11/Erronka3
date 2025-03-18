@@ -2,7 +2,6 @@
 include 'dbKonexioa.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Recogemos los datos del formulario
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
     $username = $_POST['username'];
@@ -10,24 +9,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $fecha_nacimiento = $_POST['fecha_nacimiento'];
     $email = $_POST['email'];
 
-    // Encriptamos la contraseña
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    // Consultamos la base de datos para comprobar si ya existe un usuario con ese nombre de usuario
     $sql_check = "SELECT * FROM bezeroak WHERE erabiltzaileIzena = '$username'";
     $result_check = $conn->query($sql_check);
 
     if ($result_check->num_rows > 0) {
-        $error = "Usuario ya registrado.";
+        $error = "Erabiltzailea erregistratuta dago.";
     } else {
-        $sql = "INSERT INTO bezeroak (izena, abizena, erabiltzaileIzena, pasahitza, jaiotzeEguna, emaila) 
+
+        $sql = "INSERT INTO bezeroak (izena, abizena, erabiltzaileIzena, password, jaiotzeEguna, emaila) 
                 VALUES ('$nombre', '$apellido', '$username', '$hashed_password', '$fecha_nacimiento', '$email')";
         
         if ($conn->query($sql) === TRUE) {
             header('Location: login.php');
             exit();
         } else {
-            $error = "Error al registrar el usuario.";
+            $error = "Akats bat gertatu da erregistroa egitean.";
         }
     }
 
@@ -75,6 +73,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <button type="submit" class="submit-button">Erregistratu</button>
         </form>
+
+        <br>
+        <div class="login-link">
+            <p>Kontua duzu? <a href="login.php">Logeatu hemen</a></p>
+        </div>
     </div>
 
 </body>
