@@ -2,18 +2,16 @@
 include 'dbKonexioa.php';
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php'); // Si no está logueado, redirige a login
+    header('Location: login.php');
     exit();
 }
 
-// Recogemos los datos de la compra
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $idLogela = $_POST['idLogela'];
     $checkin = $_POST['checkin'];
     $checkout = $_POST['checkout'];
     $user_id = $_SESSION['user_id'];
 
-    // Insertamos la compra en la base de datos
     $sql = "INSERT INTO Erosketak (user_id, idLogela, checkin, checkout) VALUES ('$user_id', '$idLogela', '$checkin', '$checkout')";
 
     if ($conn->query($sql) === TRUE) {

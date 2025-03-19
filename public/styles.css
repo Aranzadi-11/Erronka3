@@ -133,7 +133,7 @@ body {
     height: auto;
     object-fit: cover;
     border-radius: 10px;
-    alt: "Imagen de la habitación"; /* Agregar texto alternativo */
+    alt: "Logelaren irudia"; 
 }
 
 /* Logelaren datuak */
@@ -158,41 +158,30 @@ body {
 /* Karrusela */
 .carousel {
     position: relative;
-    width: 100%;
-    max-width: 400px;
-    height: 250px;
+    width: 300px;
+    height: 200px;
     overflow: hidden;
-    border-radius: 10px;
-    border: 3px solid #00008b;
 }
 
 .carousel img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    alt: "Imagen de la galería"; /* Agregar texto alternativo */
 }
 
-/* Karruselaren botoiak */
 .prev, .next {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
-    padding: 10px 15px;
-    font-size: 18px;
+    padding: 10px;
     cursor: pointer;
-    transition: 0.3s;
 }
 
-.prev { left: 10px; }
-.next { right: 10px; }
-
-.prev:hover, .next:hover {
-    background-color: rgba(0, 0, 0, 0.9);
-}
+.prev { left: 0; }
+.next { right: 0; }
 
 /* Logelaren xehetasunak */
 .room-details-container {
@@ -231,7 +220,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 10px;
-    alt: "Imagen principal de la habitación"; /* Agregar texto alternativo */
+    alt: "Logelaren irudi printzipala"; 
 }
 
 .room-gallery-image {
@@ -241,9 +230,8 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 10px;
-    alt: "Imagen galería de la habitación"; /* Agregar texto alternativo */
+    alt: "Logelaren irudia"; 
 }
-
 /* Logelaren deskribapena */
 .room-details {
     margin-bottom: 40px;

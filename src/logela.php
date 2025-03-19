@@ -124,7 +124,7 @@ $conn->close();
                 return occupiedDates;
             }
 
-            // Aktualizatu kalendarioak 5 segunduro
+            // Eguneratu kalendarioak 5 segunduro
             setInterval(function() {
                 $('#checkin').datepicker('refresh');
                 $('#checkout').datepicker('refresh');
