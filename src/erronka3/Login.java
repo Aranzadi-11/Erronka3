@@ -7,11 +7,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 
+//Login klasea lehio moduan
 public class Login extends JFrame {
     private static final long serialVersionUID = 1L;
     private JTextField erabiltzaileIzenaField;
     private JPasswordField pasahitzaField;
-    private int saiakeraKopurua = 3;
+    private int saiakeraKopurua = 0;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
@@ -96,10 +97,9 @@ public class Login extends JFrame {
                     String izena = erabiltzaileDatuak.get("izena");
                     String mota = erabiltzaileDatuak.get("erabiltzaileMota");
 
-                    // Lanpostuak baimendutako zerrenda
+                    //Baimentutako lanpostuen zerrenda
                     String[] lanPostuakBaimentuak = {"Informatikaria", "Administratzailea", "Harreragilea"};
 
-                    // Egiaztatu lanpostua baimenduta dagoen
                     boolean baimenduta = false;
                     for (String lanPostua : lanPostuakBaimentuak) {
                         if (mota.equals(lanPostua)) {
@@ -109,21 +109,22 @@ public class Login extends JFrame {
                     }
 
                     if (baimenduta) {
-                        // Baimendutako lanpostua duen erabiltzaileari ongi etorri mezu bat
                         JOptionPane.showMessageDialog(null, "Ongi etorri " + izena + ", " + mota + " zara!");
                         dispose(); 
-                        new APP(); 
+                        new APP(mota);  //Erabiltzaile mota pasatuz APP leihoa ireki
                     } else {
-                        // Baimendutako lanpostua ez duen erabiltzaileari errore mezu bat
-                        JOptionPane.showMessageDialog(null, "Kaixo " + izena + ", zure lanpostua " + mota + " da, lanpostu honek ez du aplikaziora sartzeko baimenik. Informazio gehiago nahi baduzu administratzaile batekin hitz egin.", "Errorea", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Kaixo " + izena + ", zure lanpostua " + mota + " da eta ez du aplikaziora sartzeko baimenik.\nJarri harremanetan administratzailearekin.", 
+                                                      "Errorea", JOptionPane.ERROR_MESSAGE);
                         System.exit(0);
                     }
                 } else {
-                    saiakeraKopurua--;
-                    if (saiakeraKopurua > 0) {
-                        JOptionPane.showMessageDialog(null, "Erabiltzailea edo pasahitza okerra! Saiakera geratzen dira: " + saiakeraKopurua, "Errorea", JOptionPane.ERROR_MESSAGE);
+                    saiakeraKopurua++;
+                    if (saiakeraKopurua < 3) {
+                        JOptionPane.showMessageDialog(null, "Erabiltzailea edo pasahitza okerra! Saiakera: " + saiakeraKopurua + "/3", 
+                                                      "Errorea", JOptionPane.ERROR_MESSAGE);
                     } else {
-                        JOptionPane.showMessageDialog(null, "Hiru aldiz huts egin duzu. Programa itxiko da.", "Errorea", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Hiru aldiz huts egin duzu. Programa itxiko da.", 
+                                                      "Errorea", JOptionPane.ERROR_MESSAGE);
                         System.exit(0);
                     }
                 }

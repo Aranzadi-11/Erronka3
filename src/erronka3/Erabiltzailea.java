@@ -6,7 +6,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
+/**
+ * Erabiltzaileen autentifikazio logika kudeatzen duen klasea.
+ */
 public class Erabiltzailea {
+
+    /**
+     * Erabiltzailearen kredentzialak datu-basean egiaztatzen ditu.
+     * @param erabiltzaileIzena Erabiltzaile izena.
+     * @param pasahitza Pasahitza.
+     * @return HashMap bat non erabiltzailearen datuak (izena eta mota) dauden, autentifikazioa oker bada hutsik.
+     */
     public static HashMap<String, String> egiaztatuErabiltzailea(String erabiltzaileIzena, String pasahitza) {
         HashMap<String, String> erabiltzaileDatuak = new HashMap<>();
         String sql = "SELECT izena, erabiltzaileMota FROM langileak WHERE erabiltzaileIzena = ? AND pasahitza = ?";
