@@ -5,11 +5,13 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 public class Login extends JFrame {
     private static final long serialVersionUID = 1L;
     private JTextField erabiltzaileIzenaField;
     private JPasswordField pasahitzaField;
+    private int saiakeraKopurua = 3;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
@@ -35,13 +37,11 @@ public class Login extends JFrame {
         contentPane.setLayout(new BorderLayout());
         setContentPane(contentPane);
 
-        // Titulo
         JLabel lblTitulo = new JLabel("Ongi Etorri", SwingConstants.CENTER);
         lblTitulo.setFont(new Font("Arial", Font.BOLD, 24));
         lblTitulo.setForeground(new Color(30, 144, 255));
         contentPane.add(lblTitulo, BorderLayout.NORTH);
 
-        // Formulario
         JPanel panelFormulario = new JPanel(new GridBagLayout());
         panelFormulario.setBackground(Color.WHITE);
         GridBagConstraints gbc = new GridBagConstraints();
@@ -72,7 +72,6 @@ public class Login extends JFrame {
 
         contentPane.add(panelFormulario, BorderLayout.CENTER);
 
-        // Botoia
         JButton btnLogin = new JButton("Saioa Hasi");
         btnLogin.setFont(new Font("Arial", Font.BOLD, 14));
         btnLogin.setForeground(Color.WHITE);
@@ -80,7 +79,7 @@ public class Login extends JFrame {
         btnLogin.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
         btnLogin.setFocusPainted(false);
         btnLogin.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        
+
         JPanel panelBotoia = new JPanel();
         panelBotoia.setBackground(Color.WHITE);
         panelBotoia.add(btnLogin);
@@ -90,13 +89,43 @@ public class Login extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String erabiltzaileIzena = erabiltzaileIzenaField.getText();
                 String pasahitza = new String(pasahitzaField.getPassword());
+                
+                HashMap<String, String> erabiltzaileDatuak = Erabiltzailea.egiaztatuErabiltzailea(erabiltzaileIzena, pasahitza);
+                
+                if (!erabiltzaileDatuak.isEmpty()) {
+                    String izena = erabiltzaileDatuak.get("izena");
+                    String mota = erabiltzaileDatuak.get("erabiltzaileMota");
 
-                if (Erabiltzailea.egiaztatuErabiltzailea(erabiltzaileIzena, pasahitza)) {
-                    JOptionPane.showMessageDialog(null, "Saioa ongi hasi da!");
-                    dispose(); // Login itxi
-                    new APP(); // Aplikazioa ireki
+                    // Lanpostuak baimendutako zerrenda
+                    String[] lanPostuakBaimentuak = {"Informatikaria", "Administratzailea", "Harreragilea"};
+
+                    // Egiaztatu lanpostua baimenduta dagoen
+                    boolean baimenduta = false;
+                    for (String lanPostua : lanPostuakBaimentuak) {
+                        if (mota.equals(lanPostua)) {
+                            baimenduta = true;
+                            break;
+                        }
+                    }
+
+                    if (baimenduta) {
+                        // Baimendutako lanpostua duen erabiltzaileari ongi etorri mezu bat
+                        JOptionPane.showMessageDialog(null, "Ongi etorri " + izena + ", " + mota + " zara!");
+                        dispose(); 
+                        new APP(); 
+                    } else {
+                        // Baimendutako lanpostua ez duen erabiltzaileari errore mezu bat
+                        JOptionPane.showMessageDialog(null, "Kaixo " + izena + ", zure lanpostua " + mota + " da, lanpostu honek ez du aplikaziora sartzeko baimenik. Informazio gehiago nahi baduzu administratzaile batekin hitz egin.", "Errorea", JOptionPane.ERROR_MESSAGE);
+                        System.exit(0);
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Erabiltzailea edo pasahitza okerra!", "Errorea", JOptionPane.ERROR_MESSAGE);
+                    saiakeraKopurua--;
+                    if (saiakeraKopurua > 0) {
+                        JOptionPane.showMessageDialog(null, "Erabiltzailea edo pasahitza okerra! Saiakera geratzen dira: " + saiakeraKopurua, "Errorea", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Hiru aldiz huts egin duzu. Programa itxiko da.", "Errorea", JOptionPane.ERROR_MESSAGE);
+                        System.exit(0);
+                    }
                 }
             }
         });
