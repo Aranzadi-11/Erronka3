@@ -22,7 +22,7 @@ public class TauleenDatuak extends AbstractTableModel {
              Statement stmt = con.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
-            // Obtener los nombres de las columnas
+            //Zutabeen izenak lortu
             ResultSetMetaData metaData = rs.getMetaData();
             int columnCount = metaData.getColumnCount();
             columns = new String[columnCount];
@@ -30,7 +30,7 @@ public class TauleenDatuak extends AbstractTableModel {
                 columns[i - 1] = metaData.getColumnName(i);
             }
 
-            // Obtener los datos de las filas
+            //Lerroetako datuak lortu
             while (rs.next()) {
                 String[] row = new String[columnCount];
                 for (int i = 1; i <= columnCount; i++) {

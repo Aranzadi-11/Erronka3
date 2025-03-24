@@ -5,9 +5,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Taula datuak datu-basetik eraman eta JTable-ra egokitzen duen modelo klasea.
- */
+//Taula datuak datu-basetik eraman eta JTable-ra egokitzen duen modelo klasea.
+
 public class TaulaErakuslea extends AbstractTableModel {
     private static final long serialVersionUID = 1L;
     private String taulaIzena;
@@ -25,7 +24,7 @@ public class TaulaErakuslea extends AbstractTableModel {
              Statement stmt = con.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
-            // Zutabeen izenak lortu
+            //Zutabeen izenak lortu
             ResultSetMetaData metaData = rs.getMetaData();
             int zutabeKopurua = metaData.getColumnCount();
             zutabeak = new String[zutabeKopurua];
@@ -33,7 +32,7 @@ public class TaulaErakuslea extends AbstractTableModel {
                 zutabeak[i - 1] = metaData.getColumnName(i);
             }
 
-            // Errenkada guztia lortu
+            //Errenkada guztia lortu
             while (rs.next()) {
                 String[] errenkada = new String[zutabeKopurua];
                 for (int i = 1; i <= zutabeKopurua; i++) {

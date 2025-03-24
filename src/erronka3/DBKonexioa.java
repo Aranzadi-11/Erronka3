@@ -15,7 +15,6 @@ public class DBKonexioa {
         Connection konexioa = null;
         try {
             konexioa = DriverManager.getConnection(URL, USER, PASSWORD);
-            System.out.println("Konexioa arrakastatsua!");
         } catch (SQLException e) {
             System.out.println("Errorea konexioan: " + e.getMessage());
         }

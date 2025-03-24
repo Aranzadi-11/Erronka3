@@ -2,24 +2,19 @@ package erronka3;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Aplikazioko leiho nagusia: taula eremu nagusia eta eskumenean botoi panela.
- * Botoiak, taula goiko eremua eta bestelako elementuak eguneratu dira
- * erabilerari errazago eta atseginago erakusteko.
- */
+// Aplikazioaren exekutablea
 public class APP extends JFrame {
     private static final long serialVersionUID = 1L;
     private JPanel edukiontzia;
-    private JPanel botoiakPanel;  // Eskumenean dauden botoiak
+    private JPanel botoiakPanel;  // Eskuuineko botoiak
     private JPanel taulaPanel;     // Taula datuak erakusteko panela
 
     public APP(String userType) {
-        // Leihoaren ezarpenak: tamaina handiagoa eta beti pantailaren erdian
+        // Leihoaren ezarpenak, tamaina handiagoa eta beti pantailaren erdian
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1200, 800);
         setLocationRelativeTo(null);
@@ -28,22 +23,22 @@ public class APP extends JFrame {
         setContentPane(edukiontzia);
         setTitle("Aplikazioa");
 
-        // Taula panela: gainerako espazioa, funtsezko eremu nagusia (zuria)
+        // Taularen konfigurazioa, kolore txuria ezarri
         taulaPanel = new JPanel(new BorderLayout());
         taulaPanel.setBackground(Color.WHITE);
         taulaPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        // Botoiak panela: leihoaren eskumenean, urdin kolore sendoarekin
+        // Eskuinaldeko botoien konfigurazioa, botoiak urdinak
         botoiakPanel = new JPanel();
         botoiakPanel.setLayout(new BoxLayout(botoiakPanel, BoxLayout.Y_AXIS));
         botoiakPanel.setBackground(Color.WHITE);
         botoiakPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 2, Color.BLACK));
         botoiakPanel.setPreferredSize(new Dimension(250, 800));
 
-        // Botoiak sortu, erabiltzaile mota arabera + ITXI botoia
+        // Erabiltzaile motaren arabera botoi batzuk sortu
         sortuBotoiak(userType);
 
-        // Leihoan ezarri: taula panela ezkerrean (edo zentrora) eta botoiak eskuinean
+        // Taula erdian edo ezkerraldera bota eta botoiak eskuinaldean 
         edukiontzia.add(taulaPanel, BorderLayout.CENTER);
         edukiontzia.add(botoiakPanel, BorderLayout.EAST);
 
@@ -52,13 +47,8 @@ public class APP extends JFrame {
 
     private void sortuBotoiak(String userType) {
         List<String> taulak = getTaulakErabiltzaileMota(userType);
-        
-        // Gehitu aukeratutako taula botoiak
         for (String taula : taulak) {
             JButton taulaBotoia = new JButton(taula.toUpperCase());
-            // Botoi handiak eta erakargarriak:
-            // - Oso urdin botoi osoa
-            // - Testua beltza
             taulaBotoia.setAlignmentX(Component.CENTER_ALIGNMENT);
             taulaBotoia.setMaximumSize(new Dimension(230, 600)); 
             taulaBotoia.setFont(new Font("Arial", Font.BOLD, 18));
@@ -73,10 +63,9 @@ public class APP extends JFrame {
             botoiakPanel.add(taulaBotoia);
         }
         
-        // Espazio betetzeko botoien artean
         botoiakPanel.add(Box.createVerticalGlue());
         
-        // Gehitu "ITXI" botoia beheko eskumenean
+        // "ITXI" botoia beheko eskumenean
         JButton exitBotoia = new JButton("ITXI");
         exitBotoia.setAlignmentX(Component.CENTER_ALIGNMENT);
         exitBotoia.setMaximumSize(new Dimension(230, 600));
@@ -92,31 +81,11 @@ public class APP extends JFrame {
         botoiakPanel.add(exitBotoia);
     }
 
+    // Metodoa taula eremu dinamikoarekin erakusteko
     private void erakutsiTaula(String taulaIzena) {
-        JTable table = new JTable();
-        // Taula betetzeko datuak datu-basetik
-        table.setModel(new TauleenDatuak(taulaIzena));
-        table.setFillsViewportHeight(true);
-        table.setFont(new Font("Arial", Font.PLAIN, 14));
-        table.setRowHeight(25);
-        table.setForeground(Color.BLACK);
-        table.setBackground(Color.WHITE);
-        table.setGridColor(Color.BLACK);
-
-        // Taula goiko eremu (header) aldaketak: urdin background eta beltza testua
-        JTableHeader header = table.getTableHeader();
-        header.setBackground(new Color(30, 144, 255));
-        header.setForeground(Color.BLACK);
-        header.setFont(new Font("Arial", Font.BOLD, 16));
-        header.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-
-        // Scroll panela, fondo zuri
-        JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.getViewport().setBackground(Color.WHITE);
-        scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-        
+        TaulaViewPanel taulaViewPanel = new TaulaViewPanel(taulaIzena);
         taulaPanel.removeAll();
-        taulaPanel.add(scrollPane, BorderLayout.CENTER);
+        taulaPanel.add(taulaViewPanel, BorderLayout.CENTER);
         taulaPanel.revalidate();
         taulaPanel.repaint();
     }
@@ -129,13 +98,13 @@ public class APP extends JFrame {
                 taulak.add("erreserbak");
                 taulak.add("langileak");
                 taulak.add("logelak");
-                taulak.add("zerbitzuak");
+                taulak.add("zerbitsuak");
                 break;
             case "Informatikaria":
                 taulak.add("bezeroak");
                 taulak.add("erreserbak");
                 taulak.add("logelak");
-                taulak.add("zerbitzuak");
+                taulak.add("zerbitsuak");
                 break;
             case "Harreragilea":
                 taulak.add("bezeroak");
