@@ -8,8 +8,8 @@ import java.util.HashMap;
 
 public class Formularioa {
 
-    public static void mostrarFormulario(String taulaIzena, String modua, String idKatea, String idBalioa, String[] errenkada, Runnable onSuccess) {
-        JFrame frame = new JFrame("Formulario - " + taulaIzena);
+    public static void formularioaErakutsi(String taulaIzena, String modua, String idKatea, String idBalioa, String[] errenkada, Runnable onSuccess) {
+        JFrame frame = new JFrame("Formularioa - " + taulaIzena);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLayout(new BorderLayout());
         
@@ -20,11 +20,11 @@ public class Formularioa {
         gbc.insets = new Insets(5,5,5,5);
         gbc.fill = GridBagConstraints.HORIZONTAL;
         
-        // Erabili TauleenDatuak modeloak zutabe izenak lortzeko
+        //Erabili TauleenDatuak modeloak zutabe izenak lortzeko
         TauleenDatuak modelo = new TauleenDatuak(taulaIzena);
         int kolCount = modelo.getColumnCount();
         
-        JTextField[] fields = new JTextField[kolCount - 1]; // lehen zutabea (id) baztertuta
+        JTextField[] fields = new JTextField[kolCount - 1]; //lehen zutabea (id) baztertuta
         int fieldIndex = 0;
         for (int i = 1; i < kolCount; i++) {
             gbc.gridx = 0;
@@ -34,7 +34,7 @@ public class Formularioa {
             
             gbc.gridx = 1;
             JTextField textField = new JTextField(15);
-            // Prefill eremuak eguneratzean edo gehitzean (hautatutako errenkadaren datuak)
+            //Prefill eremuak eguneratzean edo gehitzean (hautatutako errenkadaren datuak)
             if (errenkada != null && errenkada.length > i) {
                 textField.setText(errenkada[i]);
             }

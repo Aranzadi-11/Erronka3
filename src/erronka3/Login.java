@@ -26,6 +26,8 @@ public class Login extends JFrame {
     }
 
     public Login() {
+    	
+    	//Tituloaren konfigurazioa
         setTitle("Saioa Hasi");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 300);
@@ -38,41 +40,44 @@ public class Login extends JFrame {
         contentPane.setLayout(new BorderLayout());
         setContentPane(contentPane);
 
-        JLabel lblTitulo = new JLabel("Ongi Etorri", SwingConstants.CENTER);
-        lblTitulo.setFont(new Font("Arial", Font.BOLD, 24));
-        lblTitulo.setForeground(new Color(30, 144, 255));
-        contentPane.add(lblTitulo, BorderLayout.NORTH);
+        JLabel lblTituloa = new JLabel("Ongi Etorri", SwingConstants.CENTER);
+        lblTituloa.setFont(new Font("Arial", Font.BOLD, 24));
+        lblTituloa.setForeground(new Color(30, 144, 255));
+        contentPane.add(lblTituloa, BorderLayout.NORTH);
 
-        JPanel panelFormulario = new JPanel(new GridBagLayout());
-        panelFormulario.setBackground(Color.WHITE);
+        JPanel panelFormularioa = new JPanel(new GridBagLayout());
+        panelFormularioa.setBackground(Color.WHITE);
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
+        //Erabiltzailearen tituloa eta gelaxka
         JLabel lblErabiltzaileIzena = new JLabel("Erabiltzaile Izena:");
         lblErabiltzaileIzena.setFont(new Font("Arial", Font.PLAIN, 14));
         gbc.gridx = 0;
         gbc.gridy = 0;
-        panelFormulario.add(lblErabiltzaileIzena, gbc);
+        panelFormularioa.add(lblErabiltzaileIzena, gbc);
 
         erabiltzaileIzenaField = new JTextField(15);
         erabiltzaileIzenaField.setFont(new Font("Arial", Font.PLAIN, 14));
         gbc.gridx = 1;
-        panelFormulario.add(erabiltzaileIzenaField, gbc);
-
+        panelFormularioa.add(erabiltzaileIzenaField, gbc);
+        
+        //Pasahitzaren tituloa eta gelaxka
         JLabel lblPasahitza = new JLabel("Pasahitza:");
         lblPasahitza.setFont(new Font("Arial", Font.PLAIN, 14));
         gbc.gridx = 0;
         gbc.gridy = 1;
-        panelFormulario.add(lblPasahitza, gbc);
+        panelFormularioa.add(lblPasahitza, gbc);
 
         pasahitzaField = new JPasswordField(15);
         pasahitzaField.setFont(new Font("Arial", Font.PLAIN, 14));
         gbc.gridx = 1;
-        panelFormulario.add(pasahitzaField, gbc);
+        panelFormularioa.add(pasahitzaField, gbc);
 
-        contentPane.add(panelFormulario, BorderLayout.CENTER);
-
+        contentPane.add(panelFormularioa, BorderLayout.CENTER);
+        
+        //Saioa hasi-ren botoia
         JButton btnLogin = new JButton("Saioa Hasi");
         btnLogin.setFont(new Font("Arial", Font.BOLD, 14));
         btnLogin.setForeground(Color.WHITE);

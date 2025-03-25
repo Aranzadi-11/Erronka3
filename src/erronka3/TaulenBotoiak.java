@@ -20,73 +20,74 @@ public class TaulenBotoiak {
         sortuBotoiak();
     }
     
+    //Botoiak sortu erabiltzaile motaren arabera
     private void sortuBotoiak() {
         switch (taulaIzena) {
             case "bezeroak":
-                botoiakPanel.add(createButton("Ezabatu", new ActionListener() {
+                botoiakPanel.add(botoiaSortu("Ezabatu", new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         ezabatuErregistroa("idBezeroa");
                     }
                 }));
-                botoiakPanel.add(createButton("Eguneratu", new ActionListener() {
+                botoiakPanel.add(botoiaSortu("Eguneratu", new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         eguneratuErregistroa("idBezeroa");
                     }
                 }));
                 break;
             case "langileak":
-                botoiakPanel.add(createButton("Gehitu", new ActionListener() {
+                botoiakPanel.add(botoiaSortu("Gehitu", new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         gehituErregistroa("idLangilea");
                     }
                 }));
-                botoiakPanel.add(createButton("Ezabatu", new ActionListener() {
+                botoiakPanel.add(botoiaSortu("Ezabatu", new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         ezabatuErregistroa("idLangilea");
                     }
                 }));
-                botoiakPanel.add(createButton("Eguneratu", new ActionListener() {
+                botoiakPanel.add(botoiaSortu("Eguneratu", new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         eguneratuErregistroa("idLangilea");
                     }
                 }));
                 break;
             case "erreserbak":
-                botoiakPanel.add(createButton("PDF-a sortu", new ActionListener() {
+                botoiakPanel.add(botoiaSortu("Faktura sortu", new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        PDFSortzailea.mostrarFormulario();
+                        PDFSortzailea.formularioaErakutsi();
                     }
                 }));
                 break;
             case "logelak":
-                botoiakPanel.add(createButton("Gehitu", new ActionListener() {
+                botoiakPanel.add(botoiaSortu("Gehitu", new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         gehituErregistroa("idLogela");
                     }
                 }));
-                botoiakPanel.add(createButton("Ezabatu", new ActionListener() {
+                botoiakPanel.add(botoiaSortu("Ezabatu", new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         ezabatuErregistroa("idLogela");
                     }
                 }));
-                botoiakPanel.add(createButton("Eguneratu", new ActionListener() {
+                botoiakPanel.add(botoiaSortu("Eguneratu", new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         eguneratuErregistroa("idLogela");
                     }
                 }));
                 break;
             case "zerbitsuak":
-                botoiakPanel.add(createButton("Gehitu", new ActionListener() {
+                botoiakPanel.add(botoiaSortu("Gehitu", new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         gehituErregistroa("idZerbitzua");
                     }
                 }));
-                botoiakPanel.add(createButton("Ezabatu", new ActionListener() {
+                botoiakPanel.add(botoiaSortu("Ezabatu", new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         ezabatuErregistroa("idZerbitzua");
                     }
                 }));
-                botoiakPanel.add(createButton("Eguneratu", new ActionListener() {
+                botoiakPanel.add(botoiaSortu("Eguneratu", new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         eguneratuErregistroa("idZerbitzua");
                     }
@@ -95,8 +96,8 @@ public class TaulenBotoiak {
         }
     }
     
-    // Botoi bat sortzeko metodo laguntzailea
-    private JButton createButton(String text, ActionListener action) {
+    //Botoi bat sortzeko metodo laguntzailea
+    private JButton botoiaSortu(String text, ActionListener action) {
         JButton button = new JButton(text);
         button.setFont(new Font("Arial", Font.BOLD, 14));
         button.setForeground(Color.BLACK);
@@ -107,7 +108,7 @@ public class TaulenBotoiak {
         return button;
     }
     
-    // Ezabatzeko funtzioa
+    //Ezabatzeko funtzioa
     private void ezabatuErregistroa(String idKatea) {
         String[] errenkada = taulaView.getAukeratutakoErrenkada();
         if (errenkada == null) {
@@ -127,7 +128,7 @@ public class TaulenBotoiak {
         }
     }
     
-    // Eguneratzeko funtzioa
+    //Eguneratzeko funtzioa
     private void eguneratuErregistroa(String idKatea) {
         String[] errenkada = taulaView.getAukeratutakoErrenkada();
         if (errenkada == null) {
@@ -135,17 +136,17 @@ public class TaulenBotoiak {
             return;
         }
         String idBalioa = errenkada[0];
-        Formularioa.mostrarFormulario(taulaIzena, "eguneratu", idKatea, idBalioa, errenkada, new Runnable(){
+        Formularioa.formularioaErakutsi(taulaIzena, "eguneratu", idKatea, idBalioa, errenkada, new Runnable(){
             public void run() {
                 taulaView.berrizkargatuTaula();
             }
         });
     }
     
-    // Gehitzeko funtzioa
+    //Gehitzeko funtzioa
     private void gehituErregistroa(String idKatea) {
         String[] errenkada = taulaView.getAukeratutakoErrenkada();
-        Formularioa.mostrarFormulario(taulaIzena, "gehitu", idKatea, null, errenkada, new Runnable(){
+        Formularioa.formularioaErakutsi(taulaIzena, "gehitu", idKatea, null, errenkada, new Runnable(){
             public void run() {
                 taulaView.berrizkargatuTaula();
             }

@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Ekintzak {
-    // Ezabatu erregistroa
+    //Ezabatu erregistroa
     public static boolean ezabatu(String taulaIzena, String idKatea, String idBalioa) {
         String sql = "DELETE FROM " + taulaIzena + " WHERE " + idKatea + " = ?";
         try (Connection con = DBKonexioa.konektatu();
@@ -21,7 +21,7 @@ public class Ekintzak {
         }
     }
     
-    // Eguneratu erregistroa
+    //Eguneratu erregistroa
     public static boolean eguneratu(String taulaIzena, HashMap<String, String> datuak, String idKatea, String idBalioa) {
         StringBuilder sql = new StringBuilder("UPDATE " + taulaIzena + " SET ");
         int kont = 0;
@@ -48,7 +48,7 @@ public class Ekintzak {
         }
     }
     
-    // Gehitu erregistroa
+    //Gehitu erregistroa
     public static boolean gehitu(String taulaIzena, HashMap<String, String> datuak) {
         StringBuilder sql = new StringBuilder("INSERT INTO " + taulaIzena + " (");
         StringBuilder placeholders = new StringBuilder();

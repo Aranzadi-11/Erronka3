@@ -13,7 +13,7 @@ public class TaulaViewPanel extends JPanel {
         this.taulaIzena = taulaIzena;
         setLayout(new BorderLayout());
         setBackground(Color.WHITE);
-        // Sortu taula: TauleenDatuak modelo erabili
+        //Taula sortu TauleenDatuak klasea erabiliz
         table = new JTable(new TauleenDatuak(taulaIzena));
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -23,12 +23,12 @@ public class TaulaViewPanel extends JPanel {
         scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         add(scrollPane, BorderLayout.CENTER);
         
-        // Sortu botoiak panela
+        //Botoien panela sortu
         botoiak = new TaulenBotoiak(taulaIzena, this);
         add(botoiak.getBotoiakPanel(), BorderLayout.SOUTH);
     }
     
-    // Metodoa aukeratutako errenkada datuak lortzeko
+    //Hautatutako errenkadaren datuak lortzeko metodoa
     public String[] getAukeratutakoErrenkada() {
         int row = table.getSelectedRow();
         if (row != -1) {
@@ -42,7 +42,7 @@ public class TaulaViewPanel extends JPanel {
         return null;
     }
     
-    // Taula berrizkargatzeko
+    //Taula berriz kargatzeko metodoa
     public void berrizkargatuTaula() {
         table.setModel(new TauleenDatuak(taulaIzena));
     }

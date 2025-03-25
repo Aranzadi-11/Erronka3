@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DBAukerak {
-    // Logelak taulatik "izena" array bezala lortzeko
+    //Logelak taulatik "izena" array bezala lortzeko
     public static String[] getLogelaIzenaArray() {
         List<String> izenak = new ArrayList<>();
         String sql = "SELECT izena FROM logelak";
@@ -21,7 +21,7 @@ public class DBAukerak {
         return izenak.toArray(new String[0]);
     }
     
-    // Logela baten arabera, erreserbatu dituzten bezeroen "erabiltzaileIzena" array
+    //Logela baten arabera, erreserbatu dituzten bezeroen "erabiltzaileIzena" array
     public static String[] getBezeroErreserbatuArray(String logelaIzena) {
         List<String> izenak = new ArrayList<>();
         String sql = "SELECT DISTINCT bez.erabiltzaileIzena FROM erreserbak AS err " +
@@ -41,7 +41,7 @@ public class DBAukerak {
         return izenak.toArray(new String[0]);
     }
     
-    // Logela eta bezeroaren arabera, erreserba datak array
+    //Logela eta bezeroaren arabera, erreserba datak array
     public static String[] getErreserbaDataArray(String logelaIzena, String bezeroIzena) {
         List<String> datak = new ArrayList<>();
         String sql = "SELECT err.erreserbaEguna FROM erreserbak AS err " +
@@ -62,7 +62,7 @@ public class DBAukerak {
         return datak.toArray(new String[0]);
     }
     
-    // Logela, bezeroaren eta erreserba eguna arabera, erreserba informazioa (sarreraEguna, irteeraEguna, sarreraOrdua, irteeraOrdua, Prezioa)
+    //Logela, bezeroaren eta erreserba eguna arabera, erreserba informazioa (sarreraEguna, irteeraEguna, sarreraOrdua, irteeraOrdua, Prezioa)
     public static String[] getErreserbaInformazioa(String logelaIzena, String bezeroIzena, String erreserbaEguna) {
         List<String> informazioa = new ArrayList<>();
         String sql = "SELECT err.sarreraEguna, err.irteeraEguna, err.sarreraOrdua, err.irteeraOrdua, err.prezioa " +
@@ -78,7 +78,7 @@ public class DBAukerak {
 
             ResultSet rs = pst.executeQuery();
             while(rs.next()){
-                // Añadimos los resultados a la lista
+                //Taulako datu gehiago gordetzen ditugu onderen erabiltzeko
                 informazioa.add(rs.getString("sarreraEguna"));
                 informazioa.add(rs.getString("irteeraEguna"));
                 informazioa.add(rs.getString("sarreraOrdua"));

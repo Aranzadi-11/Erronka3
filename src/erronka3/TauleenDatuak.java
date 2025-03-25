@@ -5,38 +5,40 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+//Datu-baseko taulak JTable-ra egokitzen dituen modelo klasea.
+
 public class TauleenDatuak extends AbstractTableModel {
     private static final long serialVersionUID = 1L;
-    private String tableName;
-    private List<String[]> rows = new ArrayList<>();
-    private String[] columns;
+    private String taulaIzena;
+    private List<String[]> errenkadak = new ArrayList<>();
+    private String[] zutabeak;
 
-    public TauleenDatuak(String tableName) {
-        this.tableName = tableName;
-        fetchData();
+    public TauleenDatuak(String taulaIzena) {
+        this.taulaIzena = taulaIzena;
+        datuakErakutsi();
     }
 
-    private void fetchData() {
-        String sql = "SELECT * FROM " + tableName;
+    private void datuakErakutsi() {
+        String sql = "SELECT * FROM " + taulaIzena;
         try (Connection con = DBKonexioa.konektatu();
              Statement stmt = con.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
             //Zutabeen izenak lortu
             ResultSetMetaData metaData = rs.getMetaData();
-            int columnCount = metaData.getColumnCount();
-            columns = new String[columnCount];
-            for (int i = 1; i <= columnCount; i++) {
-                columns[i - 1] = metaData.getColumnName(i);
+            int zutabeKopurua = metaData.getColumnCount();
+            zutabeak = new String[zutabeKopurua];
+            for (int i = 1; i <= zutabeKopurua; i++) {
+                zutabeak[i - 1] = metaData.getColumnName(i);
             }
 
-            //Lerroetako datuak lortu
+            //Errenkada guztia lortu
             while (rs.next()) {
-                String[] row = new String[columnCount];
-                for (int i = 1; i <= columnCount; i++) {
-                    row[i - 1] = rs.getString(i);
+                String[] errenkada = new String[zutabeKopurua];
+                for (int i = 1; i <= zutabeKopurua; i++) {
+                    errenkada[i - 1] = rs.getString(i);
                 }
-                rows.add(row);
+                errenkadak.add(errenkada);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -45,21 +47,21 @@ public class TauleenDatuak extends AbstractTableModel {
 
     @Override
     public int getRowCount() {
-        return rows.size();
+        return errenkadak.size();
     }
 
     @Override
     public int getColumnCount() {
-        return columns.length;
+        return zutabeak.length;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        return rows.get(rowIndex)[columnIndex];
+        return errenkadak.get(rowIndex)[columnIndex];
     }
 
     @Override
     public String getColumnName(int column) {
-        return columns[column];
+        return zutabeak[column];
     }
 }

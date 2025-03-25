@@ -5,7 +5,8 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" path="src"/>
+	<classpathentry excluding="resouce/" kind="src" path="src"/>
+	<classpathentry kind="src" path="image"/>
 	<classpathentry kind="lib" path="C:/Users/aranz/Downloads/mysql-connector-j-9.0.0/mysql-connector-j-9.0.0/mysql-connector-j-9.0.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/aranz/Downloads/Lib/Lib/commons-logging-1.2.jar">
 		<attributes>
