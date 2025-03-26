@@ -7,6 +7,8 @@ namespace BezeroenAPP
 {
     public partial class Login : Form
     {
+        private int saiakeraKopurua = 0; //Saiakera kontagailua
+
         public Login()
         {
             InitializeComponent();
@@ -17,49 +19,60 @@ namespace BezeroenAPP
             string erabiltzaileIzena = txtErabiltzaileIzena.Text;
             string pasahitza = txtPasahitza.Text;
 
-            // Crear una instancia de la clase DBKonexioa para obtener la conexión
+            //DB-arekin konexioa
             DBKonexioa db = new DBKonexioa();
             MySqlConnection conn = db.GetConnection();
 
             try
             {
-                // Abrir la conexión con la base de datos
+                //Konexioa ireki
                 db.OpenConnection(conn);
 
                 string query = "SELECT COUNT(*) FROM bezeroak WHERE erabiltzaileIzena=@izena AND pasahitza=@pasahitza";
                 using (MySqlCommand cmd = new MySqlCommand(query, conn))
                 {
-                    // Añadir parámetros a la consulta para evitar inyecciones SQL
                     cmd.Parameters.AddWithValue("@izena", erabiltzaileIzena);
                     cmd.Parameters.AddWithValue("@pasahitza", pasahitza);
 
-                    // Ejecutar la consulta y obtener el número de coincidencias
                     int count = Convert.ToInt32(cmd.ExecuteScalar());
 
-                    // Verificar si el usuario existe
+                    //Erabiltzailea existitzen dela ziurtatu
                     if (count > 0)
                     {
                         MessageBox.Show("Ongi etorri!", "Arrakasta", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        // Abrir la aplicación principal
+                        //APP formularioa ireki
                         APP nagusia = new APP();
                         nagusia.Show();
-                        this.Hide(); // Ocultar el formulario de login
+                        this.Hide(); //Login formularioa ezkutatu
                     }
                     else
                     {
-                        MessageBox.Show("Erabiltzaile izena edo pasahitza okerra!", "Errorea", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //Saikalari kopurua gehitu
+                        saiakeraKopurua++;
+
+                        if (saiakeraKopurua >= 3)
+                        {
+                            //Hiru saiakera baino gehiago egin badira, errorea erakutsi eta aplikazioa itxi
+                            MessageBox.Show("Saikera kopurua agortu duzu, aplikazioa itxi egingo da", "Akatsa", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            Application.Exit(); //Aplikazioa itxi
+                        }
+                        else
+                        {
+                            //Erabiltzaile izena edo pasahitza gaizki jarri dutenak
+                            MessageBox.Show($"Erabiltzaile izena edo pasahitza gaizki jarri dituzu. Saiakera kopurua: {saiakeraKopurua}/3", "Errorea", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
-                // Si ocurre un error, mostrarlo al usuario
-                MessageBox.Show("Errorea: " + ex.Message, "Errorea", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //Akatsaren mezua erakutsi
+                MessageBox.Show("Akatsa: " + ex.Message, "Akatsa", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
-                // Cerrar la conexión
+                //Konexioa itxi
                 db.CloseConnection(conn);
             }
         }
