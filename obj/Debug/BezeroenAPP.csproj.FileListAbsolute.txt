@@ -1,0 +1,10 @@
+C:\Users\aranz\source\repos\BezeroenAPP\bin\Debug\BezeroenAPP.exe.config
+C:\Users\aranz\source\repos\BezeroenAPP\bin\Debug\BezeroenAPP.exe
+C:\Users\aranz\source\repos\BezeroenAPP\bin\Debug\BezeroenAPP.pdb
+C:\Users\aranz\source\repos\BezeroenAPP\obj\Debug\BezeroenAPP.csproj.AssemblyReference.cache
+C:\Users\aranz\source\repos\BezeroenAPP\obj\Debug\BezeroenAPP.Login.resources
+C:\Users\aranz\source\repos\BezeroenAPP\obj\Debug\BezeroenAPP.Properties.Resources.resources
+C:\Users\aranz\source\repos\BezeroenAPP\obj\Debug\BezeroenAPP.csproj.GenerateResource.cache
+C:\Users\aranz\source\repos\BezeroenAPP\obj\Debug\BezeroenAPP.csproj.CoreCompileInputs.cache
+C:\Users\aranz\source\repos\BezeroenAPP\obj\Debug\BezeroenAPP.exe
+C:\Users\aranz\source\repos\BezeroenAPP\obj\Debug\BezeroenAPP.pdb
