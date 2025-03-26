@@ -16,7 +16,8 @@ namespace BezeroenAPP
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new APP());
+            Login loginForm = new Login();
+            Application.Run(loginForm);
         }
     }
 }
