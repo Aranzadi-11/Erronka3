@@ -19,13 +19,13 @@ namespace BezeroenAPP
             string erabiltzaileIzena = txtErabiltzaileIzena.Text;
             string pasahitza = txtPasahitza.Text;
 
-            //DB-arekin konexioa
+            // DBKonexioa klasea erabiliz konexioa lortu
             DBKonexioa db = new DBKonexioa();
-            MySqlConnection conn = db.GetConnection();
 
             try
             {
                 //Konexioa ireki
+                MySqlConnection conn = db.GetConnection();
                 db.OpenConnection(conn);
 
                 string query = "SELECT COUNT(*) FROM bezeroak WHERE erabiltzaileIzena=@izena AND pasahitza=@pasahitza";
@@ -48,7 +48,7 @@ namespace BezeroenAPP
                     }
                     else
                     {
-                        //Saikalari kopurua gehitu
+                        //Saiakera kopurua gehitu
                         saiakeraKopurua++;
 
                         if (saiakeraKopurua >= 3)
@@ -70,11 +70,14 @@ namespace BezeroenAPP
                 //Akatsaren mezua erakutsi
                 MessageBox.Show("Akatsa: " + ex.Message, "Akatsa", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            finally
-            {
-                //Konexioa itxi
-                db.CloseConnection(conn);
-            }
+        }
+
+        //Botonari klik egiterakoan, Erregistratu formularioa irekiko da
+        private void btnErregistratu_Click(object sender, EventArgs e)
+        {
+            Erregistratu erregistratuForm = new Erregistratu();
+            erregistratuForm.Show();
+            this.Hide(); //Login formularioa ezkutatu
         }
     }
 }
