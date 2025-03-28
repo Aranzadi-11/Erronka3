@@ -42,7 +42,7 @@ namespace BezeroenAPP
                         MessageBox.Show("Ongi etorri!", "Arrakasta", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         //APP formularioa ireki
-                        APP nagusia = new APP();
+                        APP nagusia = new APP(erabiltzaileIzena, pasahitza);
                         nagusia.Show();
                         this.Hide(); //Login formularioa ezkutatu
                     }

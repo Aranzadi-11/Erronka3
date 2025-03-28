@@ -105,11 +105,11 @@
       <DependentUpon>APP.cs</DependentUpon>
     </Compile>
     <Compile Include="DBKonexioa.cs" />
-    <Compile Include="erregistratu.cs">
+    <Compile Include="Erregistratu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="erregistratu.Designer.cs">
-      <DependentUpon>erregistratu.cs</DependentUpon>
+    <Compile Include="Erregistratu.Designer.cs">
+      <DependentUpon>Erregistratu.cs</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -119,6 +119,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="APP.resx">
+      <DependentUpon>APP.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>

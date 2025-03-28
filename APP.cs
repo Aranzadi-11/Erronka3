@@ -1,20 +1,46 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows.Forms;
 
 namespace BezeroenAPP
+
 {
-    public partial class APP: Form
+
+    public partial class APP : Form
+
     {
-        public APP()
+
+        //Erabiltzailaren datuak gorde
+
+        private string userIzena;
+
+        private string userAbizena;
+
+        //Erabiltzailearen izena eta abizena jasotzen ditu
+
+        public APP(string izena, string abizena)
+
         {
+
             InitializeComponent();
+
+            this.userIzena = izena;
+
+            this.userAbizena = abizena;
+
+            ActualizarHeader();
+
         }
+
+        private void ActualizarHeader()
+
+        {
+
+            lblTitle.Text = $"Kaixo, {userIzena} {userAbizena}";
+
+        }
+
     }
+
 }
+
