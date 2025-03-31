@@ -29,20 +29,23 @@ namespace BezeroenAPP
 
         private void ErreserbakKargatu()
         {
-            panelReservas.Controls.Clear(); //Panela garbitu aurreko bezeroaren erreserbak ez erakusteko
+            panelReservas.Controls.Clear();
 
             using (MySqlConnection conn = db.GetConnection())
             {
                 db.OpenConnection(conn);
 
                 string query = @"
-                    SELECT e.idErreserba, l.izena AS Logela, b.erabiltzaileIzena AS Erabiltzailea, 
-                           e.erreserbaEguna, e.sarreraEguna, e.irteeraEguna, 
-                           e.sarreraOrdua, e.irteeraOrdua, e.iruzkina, e.Prezioa
-                    FROM erreserbak e
-                    JOIN bezeroak b ON e.idBezeroa = b.idBezeroa
-                    JOIN logelak l ON e.idLogela = l.idLogela
-                    WHERE b.erabiltzaileIzena = @izena;";
+            SELECT e.idErreserba, l.izena AS Logela, b.erabiltzaileIzena AS Erabiltzailea, 
+                DATE_FORMAT(e.erreserbaEguna, '%Y-%m-%d') AS erreserbaEguna, 
+                DATE_FORMAT(e.sarreraEguna, '%Y/%m/%d') AS sarreraEguna, 
+                DATE_FORMAT(e.irteeraEguna, '%Y/%m/%d') AS irteeraEguna, 
+                TIME(e.sarreraOrdua) AS sarreraOrdua, 
+                TIME(e.irteeraOrdua) AS irteeraOrdua, e.iruzkina, e.Prezioa
+            FROM erreserbak e
+            JOIN bezeroak b ON e.idBezeroa = b.idBezeroa
+            JOIN logelak l ON e.idLogela = l.idLogela
+            WHERE b.erabiltzaileIzena = @izena;";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, conn))
                 {
@@ -51,50 +54,82 @@ namespace BezeroenAPP
                     {
                         if (!reader.HasRows)
                         {
-                            //Erreserba ez badago, mezua erakutsi
-                            Label lblNoReservas = new Label
+                            Label lblEzErreserba = new Label
                             {
                                 Text = "Ez duzu erreserbarik.",
                                 AutoSize = true,
-                                ForeColor = Color.Red,
+                                ForeColor = Color.Blue,
                                 Font = new Font("Arial", 14F, FontStyle.Bold),
                                 TextAlign = ContentAlignment.MiddleCenter,
                                 Dock = DockStyle.Fill
                             };
-                            panelReservas.Controls.Add(lblNoReservas);
+                            panelReservas.Controls.Add(lblEzErreserba);
                         }
                         else
                         {
-                            //Erreserbak, bat bestearen gainean jarri
                             while (reader.Read())
                             {
-                                Panel reservaPanel = new Panel
+                                //Errereserba panela sortu
+                                Panel erreserbaPanel = new Panel
                                 {
-                                    Width = panelReservas.Width - 20, //Zabalera handitu
-                                    Height = 150, //Erreserba bakoitzaren altuera
-                                    BorderStyle = BorderStyle.FixedSingle,
-                                    Padding = new Padding(5),
-                                    Margin = new Padding(5) //Erreserben arteko tartea
+                                    Width = panelReservas.Width - 40,
+                                    Height = 170,
+                                    BackColor = Color.White,
+                                    Margin = new Padding(10),
+                                    BorderStyle = BorderStyle.FixedSingle
                                 };
 
-                                Label lblReserva = new Label
+                                //Erreserba panelaren goiburua
+                                Panel panelHeader = new Panel
                                 {
-                                    Text = $"Erreserba zenbakia: {reader["idErreserba"]}\n" +
-                                           $"Logela: {reader["Logela"]}\n" +
-                                           $"Erreserba eguna: {reader["erreserbaEguna"]}\n" +
-                                           $"Sarrera ordua: {reader["sarreraEguna"]}\n" +
-                                           $"Irteera eguna: {reader["irteeraEguna"]}\n" +
-                                           $"Sarrera ordua{reader["sarreraOrdua"]}\n" +
-                                           $"Irteera ordua: {reader["irteeraOrdua"]}\n" +
-                                           $"Prezioa: {reader["Prezioa"]}€\n" +
-                                           $"Iruzkina: {reader["iruzkina"]}",
-                                    AutoSize = true,
-                                    Font = new Font("Arial", 10F),
-                                    TextAlign = ContentAlignment.TopLeft
+                                    Dock = DockStyle.Top,
+                                    Height = 35,
+                                    BackColor = Color.Black,
                                 };
 
-                                reservaPanel.Controls.Add(lblReserva);
-                                panelReservas.Controls.Add(reservaPanel);
+                                Label lblErreserbaHeader = new Label
+                                {
+                                    Text = $"Erreserba #{reader["idErreserba"]}",
+                                    ForeColor = Color.White,
+                                    Font = new Font("Arial", 12F, FontStyle.Bold),
+                                    Dock = DockStyle.Fill,
+                                    TextAlign = ContentAlignment.MiddleLeft,
+                                    Padding = new Padding(10)
+                                };
+
+                                panelHeader.Controls.Add(lblErreserbaHeader);
+
+                                //Erreserba panelaren informazioa
+                                TableLayoutPanel infoTable = new TableLayoutPanel
+                                {
+                                    Dock = DockStyle.Fill,
+                                    ColumnCount = 2,
+                                    RowCount = 5,
+                                    Padding = new Padding(10)
+                                };
+
+                                infoTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+                                infoTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+
+                                //Erreserba panelaren informazioa formatu on batean sartu
+                                infoTable.Controls.Add(CreateDetailLabel("Logela:", reader["Logela"].ToString()), 0, 0);
+                                infoTable.SetColumnSpan(infoTable.Controls[infoTable.Controls.Count - 1], 2);
+
+                                infoTable.Controls.Add(CreateDetailLabel("Prezioa:", reader["Prezioa"].ToString() + "€"), 0, 1);
+                                infoTable.SetColumnSpan(infoTable.Controls[infoTable.Controls.Count - 1], 2);
+
+                                infoTable.Controls.Add(CreateDetailLabel("Sarrera eguna:", reader["sarreraEguna"].ToString()), 0, 2);
+                                infoTable.Controls.Add(CreateDetailLabel("Irteera eguna:", reader["irteeraEguna"].ToString()), 1, 2);
+
+                                infoTable.Controls.Add(CreateDetailLabel("Sarrera ordua:", reader["sarreraOrdua"].ToString()), 0, 3);
+                                infoTable.Controls.Add(CreateDetailLabel("Irteera ordua:", reader["irteeraOrdua"].ToString()), 1, 3);
+
+                                infoTable.Controls.Add(CreateDetailLabel("Iruzkina:", reader["iruzkina"].ToString()), 0, 4);
+                                infoTable.SetColumnSpan(infoTable.Controls[infoTable.Controls.Count - 1], 2);
+
+                                erreserbaPanel.Controls.Add(infoTable);
+                                erreserbaPanel.Controls.Add(panelHeader);
+                                panelReservas.Controls.Add(erreserbaPanel);
                             }
                         }
                     }
@@ -102,6 +137,19 @@ namespace BezeroenAPP
 
                 db.CloseConnection(conn);
             }
+        }
+
+        //Etiketa bat sortu
+        private Label CreateDetailLabel(string label, string value)
+        {
+            return new Label
+            {
+                Text = $"{label} {value}",
+                AutoSize = true,
+                Font = new Font("Arial", 10F, FontStyle.Regular),
+                ForeColor = Color.Black,
+                Padding = new Padding(2)
+            };
         }
     }
 }
