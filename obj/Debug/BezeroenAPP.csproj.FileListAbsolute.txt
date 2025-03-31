@@ -95,3 +95,4 @@ C:\Users\Unai\Desktop\Erronka\Erronka3\obj\Debug\Bezeroen.C94E1389.Up2Date
 C:\Users\Unai\Desktop\Erronka\Erronka3\obj\Debug\BezeroenAPP.exe
 C:\Users\Unai\Desktop\Erronka\Erronka3\obj\Debug\BezeroenAPP.pdb
 C:\Users\Unai\Desktop\Erronka\Erronka3\obj\Debug\BezeroenAPP.APP.resources
+C:\Users\Unai\Desktop\Erronka\Erronka3\obj\Debug\BezeroenAPP.Erregistratu.resources
