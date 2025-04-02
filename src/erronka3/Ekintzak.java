@@ -7,6 +7,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Ekintzak {
+	
+	public static boolean gehituOBP(String taulaIzena, HashMap<String, String> datuak) {
+        OBPKlasea dbManager = new OBPKlasea();
+        boolean result = dbManager.insertData(taulaIzena, datuak);
+        dbManager.closeConnection();
+        return result;
+    }
+	
     //Ezabatu erregistroa
     public static boolean ezabatu(String taulaIzena, String idKatea, String idBalioa) {
         String sql = "DELETE FROM " + taulaIzena + " WHERE " + idKatea + " = ?";
