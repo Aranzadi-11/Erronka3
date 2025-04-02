@@ -162,12 +162,16 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 100;
+
 }
 
 .carousel img {
     display: block;
     max-width: 100%;
     height: auto;
+}
+.carousel:hover {
+    transform: scale(1.02);
 }
 
 .carousel button {
