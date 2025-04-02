@@ -111,6 +111,12 @@
     <Compile Include="Erregistratu.Designer.cs">
       <DependentUpon>Erregistratu.cs</DependentUpon>
     </Compile>
+    <Compile Include="ErreserbaEditatu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ErreserbaEditatu.Designer.cs">
+      <DependentUpon>ErreserbaEditatu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Erregistratu.resx">
       <DependentUpon>Erregistratu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ErreserbaEditatu.resx">
+      <DependentUpon>ErreserbaEditatu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
