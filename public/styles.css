@@ -392,3 +392,59 @@ button[type="submit"]:hover {
     font-size: 14px;
     margin-top: 10px;
 }
+footer {
+        background-color: #222;
+        color: white;
+        text-align: center;
+        padding: 20px 0;
+    }
+.footer-container {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        max-width: 1200px;
+        margin: auto;
+        padding: 20px;
+    }
+.footer-section {
+        flex: 1;
+        min-width: 250px;
+        margin: 10px;
+    }
+.footer-section h3 {
+        margin-bottom: 10px;
+    }
+.footer-section ul {
+        list-style: none;
+        padding: 0;
+    }
+.footer-section ul li {
+        margin: 5px 0;
+    }
+.footer-section a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+.footer-section a:hover {
+        color: #f0a500;
+    }
+.social-links {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+.social-links img {
+        width: 24px;
+        transition: transform 0.3s;
+    }
+.social-links img:hover {
+        transform: scale(1.2);
+    }
+.footer-bottom {
+        margin-top: 20px;
+        font-size: 0.9em;
+    }
+
+
+

@@ -79,6 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <p>Kontua duzu? <a href="login.php">Logeatu hemen</a></p>
         </div>
     </div>
+   
 
 </body>
 </html>

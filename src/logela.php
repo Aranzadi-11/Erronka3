@@ -27,10 +27,14 @@ $conn->close();
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script defer src="../public/scripts.js"></script>
+    
 </head>
+
+
 <body>
 
     <?php include 'header.php'; ?>
+   
 
     <div id="room-details-container" class="room-details-container">
         <h1 class="room-title"><?php echo $row["izena"]; ?></h1>
@@ -79,6 +83,8 @@ $conn->close();
             </form>
         </div>
     </div>
+    
+
 
     <script>
         $(document).ready(function() {
@@ -151,6 +157,6 @@ $conn->close();
             });
         });
     </script>
-
+    <?php include 'footer.php'; ?>
 </body>
 </html>
