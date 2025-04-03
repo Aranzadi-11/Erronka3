@@ -9,10 +9,10 @@
         <div class="footer-section">
             <h3>Loturak Azkarrak</h3>
             <ul>
-                <li><a href="#">Logelak</a></li>
-                <li><a href="#">Erreserbak</a></li>
-                <li><a href="#">Zerbitzuak</a></li>
-                <li><a href="#">Kontaktua</a></li>
+                <li><a href="logela.php">Logelak</a></li>
+                <li><a href="erreserbak.php">Erreserbak</a></li>
+                <li><a href="zerbitzuak.php">Zerbitzuak</a></li>
+                <li><a href="kontaktuak.php">Kontaktua</a></li>
             </ul>
         </div>
         <div class="footer-section">
