@@ -76,7 +76,7 @@ public class TaulenBotoiak {
                     }
                 }));
                 break;
-            case "zerbitsuak":
+            case "zerbitzuak":
                 botoiakPanel.add(botoiaSortu("Gehitu", new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         gehituErregistroa("idZerbitzua");

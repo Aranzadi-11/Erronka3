@@ -99,13 +99,13 @@ public class APP extends JFrame {
                 taulak.add("erreserbak");
                 taulak.add("langileak");
                 taulak.add("logelak");
-                taulak.add("zerbitsuak");
+                taulak.add("zerbitzuak");
                 break;
             case "Informatikaria":
                 taulak.add("bezeroak");
                 taulak.add("erreserbak");
                 taulak.add("logelak");
-                taulak.add("zerbitsuak");
+                taulak.add("zerbitzuak");
                 break;
             case "Harreragilea":
                 taulak.add("bezeroak");
