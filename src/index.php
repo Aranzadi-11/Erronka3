@@ -14,7 +14,7 @@
     <!-- Títulua -->
     <h1 style="text-align: center; margin-top: 20px;">Hotelaren Logelak</h1>
  
-    <!-- Filtro pertsonen kopuruaren arabera -->
+    <!-- Filtroa pertsonen kopuruaren arabera -->
     <div style="text-align: center; margin-top: 20px;">
         <form method="GET" action="">
             <label for="kopuruaIzenburu">Pertsonen kopurua: </label>
@@ -27,31 +27,62 @@
                 <option value="6">6 pertsonentzat</option>
             </select>
             <button type="submit">Bilatu</button>
+            <br><br>
+ 
+            <!-- Karakteristikak -->
+            <label><input type="checkbox" name="balkoia" value="1"> <img src="../public/balkoia.png" style="width: 30px; height: 30px;"></label>
+            <label><input type="checkbox" name="sofa_ohea" value="1"> <img src="../public/sofa-ohea.png" style="width: 30px; height: 30px;"></label>
+            <label><input type="checkbox" name="telebista" value="1"> <img src="../public/telebista.png" style="width: 30px; height: 30px;"></label>
+            <label><input type="checkbox" name="sukaldea" value="1"> <img src="../public/sukaldea.png" style="width: 30px; height: 30px;"></label>
         </form>
+    </div>
+ 
+    <!-- Mensaje si no se encuentran habitaciones -->
+    <div id="no-rooms-message">
+        <p>Ez da logelarik aurkitu ezaugarri hauekin</p>
     </div>
  
     <div id="rooms-container">
        
         <?php
         include 'dbKonexioa.php';
-       
-        // Filtratzen pertsonen kopuruaren arabera, badaezpada
-        $kopurua = isset($_GET['kopurua']) && is_numeric($_GET['kopurua']) ? $_GET['kopurua'] : '';
  
-        // SQL kontsulta, Logelak taula hartzen du
-        $sql = "SELECT idLogela, izena, gelaEdukiera, telebista, sukaldea, balkoia, sofa_ohea, deskripzioa, prezioa, irudia, irudia1, irudia2, irudia3, irudia4, irudia5 FROM Logelak";
-       
-        // Pertsonen kopuruarekin filtratzen badugu
+        // Filtroak jasotzea
+        $kopurua = isset($_GET['kopurua']) && is_numeric($_GET['kopurua']) ? $_GET['kopurua'] : '';
+        $balkoia = isset($_GET['balkoia']) ? "balkoia = 1" : '';
+        $sofa_ohea = isset($_GET['sofa_ohea']) ? "sofa_ohea = 1" : '';
+        $telebista = isset($_GET['telebista']) ? "telebista = 1" : '';
+        $sukaldea = isset($_GET['sukaldea']) ? "sukaldea = 1" : '';
+ 
+        // Kontsulta prestatu
+        $sql = "SELECT idLogela, izena, gelaEdukiera, telebista, sukaldea, balkoia, sofa_ohea, deskripzioa, prezioa, irudia, irudia1, irudia2, irudia3, irudia4, irudia5 FROM Logelak WHERE 1=1";
+ 
+        // Pertsonen kopurua filtratu
         if ($kopurua && $kopurua !== '-') {
-            $sql .= " WHERE gelaEdukiera = $kopurua";
+            $sql .= " AND gelaEdukiera = $kopurua";
         }
  
+        // Karakteristikak filtratu
+        if ($balkoia) {
+            $sql .= " AND $balkoia";
+        }
+        if ($sofa_ohea) {
+            $sql .= " AND $sofa_ohea";
+        }
+        if ($telebista) {
+            $sql .= " AND $telebista";
+        }
+        if ($sukaldea) {
+            $sql .= " AND $sukaldea";
+        }
+ 
+        // Kontsulta exekutatu
         $result = $conn->query($sql);
  
-        // Egon daitezen logelak erakusteko
+        // Logelak erakutsi
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
-                // Irudiak filtratzen
+                // Filtrar imágenes
                 $images = array_filter([$row["irudia"], $row["irudia1"], $row["irudia2"], $row["irudia3"], $row["irudia4"], $row["irudia5"]]);
  
                 echo '<div class="room">';  
@@ -90,12 +121,14 @@
                 echo '</div>';
             }
         } else {
-            echo "<p style='text-align: center;'>Ez dago logelarik eskuragarri.</p>"; // Ez badira logelak aurkitzen
+            echo "<script>document.getElementById('no-rooms-message').style.display = 'block';</script>"; // Mostrar el mensaje si no se encuentran habitaciones
         }
  
         $conn->close(); // Datu basea itxi
         ?>
     </div>
+ 
     <?php include 'footer.php'; ?>
 </body>
 </html>
+ 
