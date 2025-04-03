@@ -9,9 +9,9 @@ session_start();
     </div>
     <nav class="nav-links">
         <a href="index.php">Logelak</a>
-        <a href="#">Erreserbak</a>
-        <a href="#">Zerbitzuak</a>
-        <a href="#">Kontaktua</a>
+        <a href="erreserbak.php">Erreserbak</a>
+        <a href="zerbitzuak.php">Zerbitzuak</a>
+        <a href="kontaktuak.php">Kontaktua</a>
 
         <?php if (isset($_SESSION['idBezeroa'])): ?>
             <div class="user-info">
