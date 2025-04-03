@@ -3,14 +3,14 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+ 
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #f5f5f5;
     color: black;
     padding-top: 80px;
 }
-
+ 
 /* Menua */
 .navbar {
     position: fixed;
@@ -25,25 +25,25 @@ body {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 200;
 }
-
+ 
 /* Logo eta izenaren edukiontzi */
 .logo-container {
     display: flex;
     align-items: center;
 }
-
+ 
 .navbar img {
     height: 50px;
     margin-right: 20px;
 }
-
+ 
 .navbar h1 {
     color: white;
     font-size: 26px;
     font-weight: bold;
     margin: 0;
 }
-
+ 
 /* Login ikonoaren estiloa */
 .login-icon {
     width: 50px;
@@ -54,48 +54,48 @@ body {
     background-color: white;
     padding: 5px;
 }
-
+ 
 /* Nabigazio menua */
 .nav-links {
     display: flex;
     gap: 20px;
     align-items: center;
 }
-
-
+ 
+ 
 .nav-links a {
-    color: white; 
-    text-decoration: none; 
-    font-weight: bold; 
-    transition: 0.3s; 
-    outline: none; 
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+    outline: none;
 }
-
-
+ 
+ 
 .nav-links a:hover {
-    color: gray; 
+    color: gray;
 }
-
+ 
 .nav-links a:active {
-    color: #a0c1d1; 
+    color: #a0c1d1;
 }
-
+ 
 /* Logelak */
 #rooms-container {
     max-width: 1200px;
     margin: auto;
     padding: 20px;
     display: grid;
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr;
     gap: 20px;
 }
-
+ 
 @media (min-width: 2000px) {
     #rooms-container {
         grid-template-columns: 1fr 1fr;
     }
 }
-
+ 
 .room {
     background: white;
     border-radius: 10px;
@@ -107,54 +107,54 @@ body {
     gap: 20px;
     text-align: left;
 }
-
+ 
 .logela-links a {
-    color: black; 
-    text-decoration: none; 
-    font-weight: bold; 
-    transition: 0.3s; 
-    outline: none; 
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+    outline: none;
 }
-
+ 
 .logela-links a:hover {
-    color: #00008b; 
+    color: #00008b;
 }
-
+ 
 .logela-links a:active {
-    color: #00008b; 
+    color: #00008b;
 }
-
+ 
 .room-image {
     flex: 1;
 }
-
+ 
 .room-image img {
     width: 100%;
     height: auto;
     object-fit: cover;
     border-radius: 10px;
-    alt: "Logelaren irudia"; 
+    alt: "Logelaren irudia";
 }
-
+ 
 /* Logelaren datuak */
 .room-details {
     flex: 2;
 }
-
+ 
 .room-details h2 {
     color: #00008b;
     margin: 10px 0;
 }
-
+ 
 .room-details p {
     color: #333;
     margin: 5px 0;
 }
-
+ 
 .room-details p strong {
     font-weight: bold;
 }
-
+ 
 /* Karrusela */
 .carousel {
     position: relative;
@@ -162,9 +162,9 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 100;
-
+ 
 }
-
+ 
 .carousel img {
     display: block;
     max-width: 100%;
@@ -173,7 +173,7 @@ body {
 .carousel:hover {
     transform: scale(1.02);
 }
-
+ 
 .carousel button {
     position: absolute;
     top: 50%;
@@ -185,22 +185,22 @@ body {
     cursor: pointer;
     z-index: 1000;
 }
-
+ 
 .carousel button.prev {
     left: 10px;
 }
-
+ 
 .carousel button.next {
     right: 10px;
 }
-
+ 
 /* Logelaren xehetasunak */
 .room-details-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
 }
-
+ 
 /* Logelaren izena */
 .room-title {
     text-align: center;
@@ -208,7 +208,7 @@ body {
     color: #2c3e50;
     margin-bottom: 20px;
 }
-
+ 
 /* Irudi galeria */
 .room-images {
     display: flex;
@@ -216,14 +216,14 @@ body {
     justify-content: center;
     margin-bottom: 40px;
 }
-
+ 
 .image-gallery {
     display: flex;
     justify-content: center;
     gap: 15px;
     flex-wrap: wrap;
 }
-
+ 
 .room-main-image {
     width: 360px;
     height: auto;
@@ -231,9 +231,9 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 10px;
-    alt: "Logelaren irudi printzipala"; 
+    alt: "Logelaren irudi printzipala";
 }
-
+ 
 .room-gallery-image {
     width: 360px;
     height: auto;
@@ -241,37 +241,37 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 10px;
-    alt: "Logelaren irudia"; 
+    alt: "Logelaren irudia";
 }
 /* Logelaren deskribapena */
 .room-details {
     margin-bottom: 40px;
 }
-
+ 
 .room-description {
     font-size: 1.2em;
     color: #7f8c8d;
     margin-bottom: 15px;
 }
-
+ 
 .features-list {
     list-style-type: none;
     padding: 0;
     font-size: 1.1em;
 }
-
+ 
 .features-list li {
     margin: 10px 0;
     display: flex;
     align-items: center;
 }
-
+ 
 .features-list .icon {
     margin-right: 10px;
     font-size: 20px;
     color: #3498db;
 }
-
+ 
 /* Erreserba atala */
 .room-reservation {
     background-color: #ecf0f1;
@@ -280,24 +280,24 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
-
+ 
 .room-reservation h3 {
     font-size: 1.8em;
     color: #2c3e50;
     margin-bottom: 20px;
 }
-
+ 
 .room-reservation form {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-
+ 
 .room-reservation label {
     margin: 10px 0;
     font-size: 1.1em;
 }
-
+ 
 .room-reservation input {
     padding: 10px;
     margin-bottom: 20px;
@@ -307,7 +307,7 @@ body {
     max-width: 300px;
     font-size: 1.1em;
 }
-
+ 
 .room-reservation button {
     background-color: #3498db;
     color: white;
@@ -318,11 +318,11 @@ body {
     font-size: 1.1em;
     transition: background-color 0.3s;
 }
-
+ 
 .room-reservation button:hover {
     background-color: #2980b9;
 }
-
+ 
 /* Hasi saioa eta erregistroa */
 #login-container,
 #register-container {
@@ -333,24 +333,24 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
+ 
 h2 {
     text-align: center;
     color: #333;
 }
-
+ 
 .login-form,
 .register-form {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
-
+ 
 label {
     font-size: 14px;
     color: #555;
 }
-
+ 
 input[type="text"],
 input[type="password"],
 input[type="email"],
@@ -362,30 +362,14 @@ input[type="date"]{
     outline: none;
     width: 100%;
 }
-
+ 
 input[type="text"]:focus,
-input[type="password"]:focus, 
+input[type="password"]:focus,
 input[type="email"]:focus,
 input[type="date"]:focus{
     border-color: #007BFF;
 }
-
-/* Botoia */
-button[type="submit"] {
-    padding: 12px;
-    font-size: 16px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button[type="submit"]:hover {
-    background-color: #0056b3;
-}
-
+ 
 /* Errorea erabiltzaileari */
 .error-message {
     color: red;
@@ -445,6 +429,41 @@ footer {
         margin-top: 20px;
         font-size: 0.9em;
     }
-
-
-
+/* Select-entzat diseinua */
+ 
+#kopurua {
+    padding: 0 12px;
+    font-size: 16px;
+    width: 250px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+ 
+#kopurua option {
+    font-size: 15px;
+    padding: 10px;
+}
+ 
+/* Textuarentzat diseinua */
+label {
+    font-size: 16px;
+    line-height: 40px;
+}
+ 
+/*Bototiak*/
+button[type="submit"] {
+    padding: 12px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+ 
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
