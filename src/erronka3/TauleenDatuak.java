@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 //Datu-baseko taulak JTable-ra egokitzen dituen modelo klasea.
-
 public class TauleenDatuak extends AbstractTableModel {
     private static final long serialVersionUID = 1L;
     private String taulaIzena;

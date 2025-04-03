@@ -274,10 +274,10 @@ public class PDFSortzailea {
             }
         });
 
-        // Acción para el botón de cancelación
+        //Akzioa atzera botatzeko botoia
         ezeztatuButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                frame.dispose();  // Cerrar el formulario
+                frame.dispose();  //Formularioa itxi
             }
         });
 

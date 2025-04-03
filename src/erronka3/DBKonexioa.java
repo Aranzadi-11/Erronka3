@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 //Datu basearekin konexioa
-
 public class DBKonexioa {
     private static final String URL = "jdbc:mysql://localhost:3306/erronka3"; 
     private static final String USER = "root";

@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 //Erabiltzaileen autentifikazioa egiteko klasea
-
 public class Erabiltzailea {
 
     public static HashMap<String, String> egiaztatuErabiltzailea(String erabiltzaileIzena, String pasahitza) {
