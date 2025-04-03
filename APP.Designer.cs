@@ -44,7 +44,7 @@ namespace BezeroenAPP
             this.panelReservas.BackColor = System.Drawing.Color.White;
             this.panelReservas.Location = new System.Drawing.Point(0, 60);
             this.panelReservas.Name = "panelReservas";
-            this.panelReservas.Size = new System.Drawing.Size(840, 390);
+            this.panelReservas.Size = new System.Drawing.Size(800, 390);
             this.panelReservas.TabIndex = 1;
 
             //Kontrolak formularioan gehitu

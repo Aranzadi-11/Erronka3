@@ -24,7 +24,6 @@ namespace BezeroenAPP
         {
 
             //Datuak jaso
-
             string izena = txtIzena.Text;
             string abizena = txtAbizena.Text;
             string erabiltzaileIzena = txtErabiltzaileIzena.Text;
