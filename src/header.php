@@ -1,10 +1,12 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 ?>
-
+ 
 <header class="navbar">
     <div class="logo-container">
-        <img src="../public/BBC_Grand_Hotel_Logo.png" alt="Logo del BBC Grand Hotel">
+        <img src="../public/BBC_Grand_Hotel_Logo.png" alt="BBC Grand Hotel logoa">
         <h1>BBC GRAND HOTEL</h1>
     </div>
     <nav class="nav-links">
@@ -12,7 +14,7 @@ session_start();
         <a href="erreserbak.php">Erreserbak</a>
         <a href="zerbitzuak.php">Zerbitzuak</a>
         <a href="kontaktuak.php">Kontaktua</a>
-
+ 
         <?php if (isset($_SESSION['idBezeroa'])): ?>
             <div class="user-info">
                 <span><?= htmlspecialchars($_SESSION['erabiltzaileIzena']) ?></span>
@@ -27,3 +29,4 @@ session_start();
         <?php endif; ?>
     </nav>
 </header>
+ 

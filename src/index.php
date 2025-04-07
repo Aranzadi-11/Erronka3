@@ -12,7 +12,7 @@
     <?php include 'header.php'; ?>
  
     <!-- Títulua -->
-    <h1 style="text-align: center; margin-top: 20px;">Hotelaren Logelak</h1>
+    <h1>Hotelaren Logelak</h1>
  
     <!-- Filtroa pertsonen kopuruaren arabera -->
     <div style="text-align: center; margin-top: 20px;">
@@ -131,4 +131,5 @@
     <?php include 'footer.php'; ?>
 </body>
 </html>
+ 
  
