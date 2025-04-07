@@ -19,8 +19,8 @@
     <form method="GET">
         <label for="ordenatu">Ordenatu prezioaren arabera:</label>
         <select name="ordenatu" id="ordenatu" onchange="this.form.submit()">
-            <option value="asc" <?php echo (isset($_GET['ordenatu']) && $_GET['ordenatu'] == 'asc') ? 'selected' : ''; ?>>Txikienetik handienera</option>
-            <option value="desc" <?php echo (isset($_GET['ordenatu']) && $_GET['ordenatu'] == 'desc') ? 'selected' : ''; ?>>Handienetik txikienera</option>
+            <option value="asc" <?php echo (isset($_GET['ordenatu']) && $_GET['ordenatu'] == 'asc') ? 'selected' : ''; ?>>Prezio baxuenetik altuenera</option>
+            <option value="desc" <?php echo (isset($_GET['ordenatu']) && $_GET['ordenatu'] == 'desc') ? 'selected' : ''; ?>>Prezio altuenetik baxuenera</option>
         </select>
     </form>
 

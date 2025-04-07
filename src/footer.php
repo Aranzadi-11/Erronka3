@@ -2,7 +2,7 @@
     <div class="footer-container">
         <div class="footer-section">
             <h3>BBC hotela</h3>
-            <p>Helbidea: Av. de Bilbao,1,N*2</p>
+            <p>Helbidea: Av. de Bilbao,1,Nº2</p>
             <p>Telefonoa: +34 669295811</p>
             <p>Emaila: BBC@hotela.com</p>
         </div>
@@ -26,5 +26,7 @@
     </div>
     <p class="footer-bottom">&copy; BBC GRAND HOTEL Eskubide guztiak erreserbatuta.</p>
 </footer>
+
+
 
 
