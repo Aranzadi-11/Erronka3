@@ -3,7 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
- 
+
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #f5f5f5;
@@ -13,7 +13,7 @@ body {
     display: flex;
     flex-direction: column;
 }
- 
+
 .navbar {
     position: fixed;
     top: 0;
@@ -27,24 +27,24 @@ body {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 200;
 }
- 
+
 .logo-container {
     display: flex;
     align-items: center;
 }
- 
+
 .navbar img {
     height: 50px;
     margin-right: 20px;
 }
- 
+
 .navbar h1 {
     color: white;
     font-size: 26px;
     font-weight: bold;
     margin: 0;
 }
- 
+
 .login-icon {
     width: 50px;
     height: 50px;
@@ -54,44 +54,44 @@ body {
     background-color: white;
     padding: 5px;
 }
- 
+
 .nav-links {
     display: flex;
     gap: 20px;
     align-items: center;
 }
- 
+
 .nav-links a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
-    outline: none;
+    color: white; 
+    text-decoration: none; 
+    font-weight: bold; 
+    transition: 0.3s; 
+    outline: none; 
 }
- 
+
 .nav-links a:hover {
-    color: gray;
+    color: gray; 
 }
- 
+
 .nav-links a:active {
-    color: #a0c1d1;
+    color: #a0c1d1; 
 }
- 
+
 #rooms-container {
     max-width: 1200px;
     margin: auto;
     padding: 20px;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; 
     gap: 20px;
 }
- 
+
 @media (min-width: 2000px) {
     #rooms-container {
         grid-template-columns: 1fr 1fr;
     }
 }
- 
+
 .room {
     background: white;
     border-radius: 10px;
@@ -103,53 +103,53 @@ body {
     gap: 20px;
     text-align: left;
 }
- 
+
 .logela-links a {
-    color: black;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
-    outline: none;
+    color: black; 
+    text-decoration: none; 
+    font-weight: bold; 
+    transition: 0.3s; 
+    outline: none; 
 }
- 
+
 .logela-links a:hover {
-    color: #00008b;
+    color: #00008b; 
 }
- 
+
 .logela-links a:active {
-    color: #00008b;
+    color: #00008b; 
 }
- 
+
 .room-image {
     flex: 1;
 }
- 
+
 .room-image img {
     width: 100%;
     height: auto;
     object-fit: cover;
     border-radius: 10px;
-    alt: "Logelaren irudia";
+    alt: "Logelaren irudia"; 
 }
- 
+
 .room-details {
     flex: 2;
 }
- 
+
 .room-details h2 {
     color: #00008b;
     margin: 10px 0;
 }
- 
+
 .room-details p {
     color: #333;
     margin: 5px 0;
 }
- 
+
 .room-details p strong {
     font-weight: bold;
 }
- 
+
 .carousel {
     position: relative;
     display: flex;
@@ -157,7 +157,7 @@ body {
     justify-content: center;
     z-index: 100;
 }
- 
+
 .carousel img {
     display: block;
     max-width: 100%;
@@ -166,7 +166,7 @@ body {
 .carousel:hover {
     transform: scale(1.02);
 }
- 
+
 .carousel button {
     position: absolute;
     top: 50%;
@@ -178,42 +178,42 @@ body {
     cursor: pointer;
     z-index: 1000;
 }
- 
+
 .carousel button.prev {
     left: 10px;
 }
- 
+
 .carousel button.next {
     right: 10px;
 }
- 
+
 .room-details-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
 }
- 
+
 .room-title {
     text-align: center;
     font-size: 2.5em;
     color: #2c3e50;
     margin-bottom: 20px;
 }
- 
+
 .room-images {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     margin-bottom: 40px;
 }
- 
+
 .image-gallery {
     display: flex;
     justify-content: center;
     gap: 15px;
     flex-wrap: wrap;
 }
- 
+
 .room-main-image {
     width: 360px;
     height: auto;
@@ -221,9 +221,9 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 10px;
-    alt: "Logelaren irudi printzipala";
+    alt: "Logelaren irudi printzipala"; 
 }
- 
+
 .room-gallery-image {
     width: 360px;
     height: auto;
@@ -231,37 +231,37 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 10px;
-    alt: "Logelaren irudia";
+    alt: "Logelaren irudia"; 
 }
- 
+
 .room-details {
     margin-bottom: 40px;
 }
- 
+
 .room-description {
     font-size: 1.2em;
     color: #7f8c8d;
     margin-bottom: 15px;
 }
- 
+
 .features-list {
     list-style-type: none;
     padding: 0;
     font-size: 1.1em;
 }
- 
+
 .features-list li {
     margin: 10px 0;
     display: flex;
     align-items: center;
 }
- 
+
 .features-list .icon {
     margin-right: 10px;
     font-size: 20px;
     color: #3498db;
 }
- 
+
 .room-reservation {
     background-color: #ecf0f1;
     padding: 30px;
@@ -269,24 +269,24 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
- 
+
 .room-reservation h3 {
     font-size: 1.8em;
     color: #2c3e50;
     margin-bottom: 20px;
 }
- 
+
 .room-reservation form {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
- 
+
 .room-reservation label {
     margin: 10px 0;
     font-size: 1.1em;
 }
- 
+
 .room-reservation input {
     padding: 10px;
     margin-bottom: 20px;
@@ -296,7 +296,7 @@ body {
     max-width: 300px;
     font-size: 1.1em;
 }
- 
+
 .room-reservation button {
     background-color: #3498db;
     color: white;
@@ -307,11 +307,73 @@ body {
     font-size: 1.1em;
     transition: background-color 0.3s;
 }
- 
+
 .room-reservation button:hover {
     background-color: #2980b9;
 }
- 
+
+/* Estilos para los servicios */
+#services-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+@media (min-width: 2000px) {
+    #services-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.service {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.service-title {
+    font-size: 1.5em;
+    color: #00008b;
+    margin-bottom: 10px;
+}
+
+.service-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.service-description {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.1em;
+}
+
+.service-price {
+    font-size: 1.3em;
+    color: #2c3e50;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    font-weight: bold;
+}
+
+/* Ajustes adicionales si se desean */
+.service:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s;
+}
+
 #login-container,
 #register-container {
     max-width: 500px;
@@ -321,24 +383,24 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
- 
+
 h2 {
     text-align: center;
     color: #333;
 }
- 
+
 .login-form,
 .register-form {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
- 
+
 label {
     font-size: 14px;
     color: #555;
 }
- 
+
 input[type="text"],
 input[type="password"],
 input[type="email"],
@@ -350,21 +412,21 @@ input[type="date"]{
     outline: none;
     width: 100%;
 }
- 
+
 input[type="text"]:focus,
-input[type="password"]:focus,
+input[type="password"]:focus, 
 input[type="email"]:focus,
 input[type="date"]:focus{
     border-color: #007BFF;
 }
- 
+
 .error-message {
     color: red;
     font-size: 14px;
     margin-top: 10px;
     margin-bottom: 50px; /* Aumenta la distancia con el footer */
 }
- 
+
 footer {
     background-color: #222;
     color: white;
@@ -372,7 +434,7 @@ footer {
     padding: 20px 0;
     margin-top: auto; /* Asegura que el footer se quede al fondo */
 }
- 
+
 .footer-container {
     display: flex;
     justify-content: space-around;
@@ -381,56 +443,56 @@ footer {
     margin: auto;
     padding: 20px;
 }
- 
+
 .footer-section {
     flex: 1;
     min-width: 250px;
     margin: 10px;
 }
- 
+
 .footer-section h3 {
     margin-bottom: 10px;
 }
- 
+
 .footer-section ul {
     list-style: none;
     padding: 0;
 }
- 
+
 .footer-section ul li {
     margin: 5px 0;
 }
- 
+
 .footer-section a {
     color: white;
     text-decoration: none;
     transition: color 0.3s;
 }
- 
+
 .footer-section a:hover {
     color: #f0a500;
 }
- 
+
 .social-links {
     display: flex;
     justify-content: center;
     gap: 10px;
 }
- 
+
 .social-links img {
     width: 24px;
     transition: transform 0.3s;
 }
- 
+
 .social-links img:hover {
     transform: scale(1.2);
 }
- 
+
 .footer-bottom {
     margin-top: 20px;
     font-size: 0.9em;
 }
- 
+
 #kopurua {
     padding: 0 12px;
     font-size: 16px;
@@ -440,17 +502,17 @@ footer {
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
- 
+
 #kopurua option {
     font-size: 15px;
     padding: 10px;
 }
- 
+
 label {
     font-size: 16px;
-    line-height: 40px;
+    line-height: 40px; 
 }
- 
+
 button[type="submit"] {
     padding: 12px;
     font-size: 16px;
@@ -461,16 +523,16 @@ button[type="submit"] {
     cursor: pointer;
     transition: background-color 0.3s;
 }
- 
+
 button[type="submit"]:hover {
     background-color: #0056b3;
 }
- 
+
 input[type="checkbox"] {
     width: 30px;
     height: 30px;
 }
- 
+
 #no-rooms-message {
     display: none;
     text-align: center;
@@ -483,3 +545,4 @@ input[type="checkbox"] {
     margin-top: 20px;
     margin-bottom: 100px;
 }
+
