@@ -14,13 +14,33 @@
     <!-- Títulua -->
     <h1 style="text-align: center; margin-top: 20px;">Hotelaren Zerbitzuak</h1>
 
+    <!-- Prezioaren arabera ordenatzeko filtroa -->
+    <div style="text-align: center; margin-top: 20px;">
+    <form method="GET">
+        <label for="ordenatu">Ordenatu prezioaren arabera:</label>
+        <select name="ordenatu" id="ordenatu" onchange="this.form.submit()">
+            <option value="asc" <?php echo (isset($_GET['ordenatu']) && $_GET['ordenatu'] == 'asc') ? 'selected' : ''; ?>>Txikienetik handienera</option>
+            <option value="desc" <?php echo (isset($_GET['ordenatu']) && $_GET['ordenatu'] == 'desc') ? 'selected' : ''; ?>>Handienetik txikienera</option>
+        </select>
+    </form>
+
     <div id="services-container">
         
         <?php
-        include 'dbKonexioa.php';
+        include 'dbKonexioa.php'; // Datubasearekin konektatzen
 
-        // Kontsulta prestatu
-        $sql = "SELECT izena, deskribapena, prezioa, argazkia FROM Zerbitzuak";
+        // Prezioaren arabera ordenatzeko logika
+        $ordenatu = 'ASC'; // Lehenetsitako balioa
+        if (isset($_GET['ordenatu'])) {
+            if ($_GET['ordenatu'] == 'desc') {
+                $ordenatu = 'DESC'; // Handiagoa txikienetik
+            } else {
+                $ordenatu = 'ASC'; // Txikiagoa handienetik
+            }
+        }
+
+        // Kontsulta prestatu (zerbitzuen izena, deskribapena, prezioa eta argazkia)
+        $sql = "SELECT izena, deskribapena, prezioa, argazkia FROM Zerbitzuak ORDER BY prezioa $ordenatu";
 
         // Kontsulta exekutatu
         $result = $conn->query($sql);
@@ -35,15 +55,16 @@
                 echo '</div>';
                 echo '<div class="service-details">'; // Zerbitzuaren xehetasunak
                 echo '<p>' . $row["deskribapena"] . '</p>';
-                echo '<p class="room-price" style="text-align: right; font-weight: bold;">' . $row["prezioa"] . '€</p>';
+                echo '<p class="room-price" style="text-align: right; font-weight: bold;">' . $row["prezioa"] . '€</p>'; // Prezioa erakutsi
                 echo '</div>';
                 echo '</div>';
             }
         } else {
-            echo "<script>document.getElementById('no-rooms-message').style.display = 'block';</script>"; // Mostrar el mensaje si no se encuentran servicios
+            // Zerbitzuak ez badira aurkitzen, mezu bat erakutsiko da
+            echo "<script>document.getElementById('no-rooms-message').style.display = 'block';</script>";
         }
 
-        $conn->close(); // Datu basea itxi
+        $conn->close(); // Datubasea itxi
         ?>
     </div>
 
