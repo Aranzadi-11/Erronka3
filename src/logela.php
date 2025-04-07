@@ -28,8 +28,116 @@ $conn->close();
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script defer src="../public/scripts.js"></script>
     
-</head>
+    <script>
+    $(document).ready(function() {
+        var idLogela = <?php echo $idLogela; ?>;
+        var bookedDates = [];
 
+        // Okupatutako egunak lortzeko funtzioa
+        function getBookedDates() {
+            return $.ajax({
+                url: 'okupatutakoEgunak.php',
+                type: 'GET',
+                data: { idLogela: idLogela },
+                dataType: 'json'
+            });
+        }
+
+        // Okupatuta dagoen ala ez egiaztatzeko funtzioa
+        function isDateBooked(date, forCheckin) {
+            for (var i = 0; i < bookedDates.length; i++) {
+                var start = new Date(bookedDates[i].start);
+                if (forCheckin) {
+                    start.setDate(start.getDate() - 1); // Reduce one day only for checkin
+                }
+                var end = new Date(bookedDates[i].end);
+                if (forCheckin && date >= start && date < end) {
+                    return true;
+                } else if (!forCheckin && date > start && date <= end) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // Datepickers eguneratzeko funtzioa
+        function updateDatepickers() {
+            $('#checkin').datepicker('option', 'beforeShowDay', function(date) {
+                return [!isDateBooked(date, true)];
+            });
+            $('#checkout').datepicker('option', 'beforeShowDay', function(date) {
+                return [!isDateBooked(date, false)];
+            });
+        }
+
+        // Hasi aurretik okupatutako egunak lortzen ditugu
+        getBookedDates().done(function(dates) {
+            bookedDates = dates;
+            updateDatepickers();
+        });
+
+        // Minuturoko eguneratzea
+        setInterval(function() {
+            getBookedDates().done(function(dates) {
+                bookedDates = dates;
+                updateDatepickers();
+            });
+        }, 60000);
+
+        // Sarrera datarako kalendarioa
+        $('#checkin').datepicker({
+            minDate: -1,  // Gaurtik atzera egun bat aukeratu ahal izango da
+            dateFormat: 'dd/mm/yy',  // Formatoa egokitu behar dugu
+            onSelect: function(dateText) {
+                $('#checkin').val(dateText);
+
+                // Sarrera datatik hurrengo eguna irteera data gisa ezarri
+                var parts = dateText.split('/');
+                var selectedDate = new Date(parts[2], parts[1] - 1, parts[0]);
+                selectedDate.setDate(selectedDate.getDate() + 1);
+
+                // Irteera datarako minDate ezartzen dugu
+                $('#checkout').datepicker('option', 'minDate', selectedDate);
+            }
+        });
+
+        // Irteera datarako kalendarioa
+        $('#checkout').datepicker({
+            minDate: 1,  // Sarrera datatik hurrengo eguna baino lehenago ezin da irteera data aukeratu
+            dateFormat: 'dd/mm/yy',  // Formatoa egokitu behar dugu
+            onSelect: function(dateText) {
+                $('#checkout').val(dateText);
+
+                // Irteera datatik aurreko eguna sarrera data gisa ezarri
+                var parts = dateText.split('/');
+                var selectedDate = new Date(parts[2], parts[1] - 1, parts[0]);
+                selectedDate.setDate(selectedDate.getDate() - 1);
+
+                // Sarrera datarako maxDate ezartzen dugu
+                $('#checkin').datepicker('option', 'maxDate', selectedDate);
+            }
+        });
+
+        // Validar las fechas en el formulario de reserva
+        $("#form-reserva").submit(function(event) {
+            var checkin = $("#checkin").datepicker("getDate");
+            var checkout = $("#checkout").datepicker("getDate");
+
+            for (var i = 0; i < bookedDates.length; i++) {
+                var start = new Date(bookedDates[i].start);
+                start.setDate(start.getDate() - 1); // Reduce one day from start date for checkin validation
+                var end = new Date(bookedDates[i].end);
+
+                if ((checkin >= start && checkin < end) || (checkout > start && checkout <= end) || (checkin < start && checkout > end)) {
+                    alert("Ezin dira aukeratu egiten diren datak. Mesedez, hautatu beste data batzuk.");
+                    event.preventDefault();
+                    return false;
+                }
+            }
+        });
+    });
+</script>
+</head>
 
 <body>
 
@@ -83,80 +191,7 @@ $conn->close();
             </form>
         </div>
     </div>
-    
 
-
-    <script>
-        $(document).ready(function() {
-            // Kalendarioa
-            $('#checkin').datepicker({
-                minDate: 1,  // Bihartik aurrerako data bakarrik
-                onSelect: function(dateText) {
-                    $('#checkin').val(dateText);
-                },
-                beforeShowDay: function(date) {
-                    return [!isDateOccupied(date)];  // Okupatutako datuak desgaitu
-                }
-            });
-
-            // Kalendarioa
-            $('#checkout').datepicker({
-                minDate: 2,  // Bi egunetik aurrerako data bakarrik
-                onSelect: function(dateText) {
-                    $('#checkout').val(dateText);
-                },
-                beforeShowDay: function(date) {
-                    return [!isDateOccupied(date)];  // Datu okupatuak desgaitu
-                }
-            });
-
-            // Funtzio honek datu okupatuak itzultzen ditu
-            function isDateOccupied(date) {
-                var occupiedDates = getOccupiedDates();
-                return occupiedDates.includes($.datepicker.formatDate('yy-mm-dd', date));
-            }
-
-            // Funtzio honek datu okupatuak eskuratzen ditu
-            function getOccupiedDates() {
-                var occupiedDates = [];
-                $.ajax({
-                    url: 'check_reservations.php',  
-                    method: 'GET',
-                    async: false,  
-                    success: function(response) {
-                        occupiedDates = JSON.parse(response);  
-                    }
-                });
-                return occupiedDates;
-            }
-
-            // Eguneratu kalendarioak 5 segunduro
-            setInterval(function() {
-                $('#checkin').datepicker('refresh');
-                $('#checkout').datepicker('refresh');
-            }, 5000);
-
-            // Erreserba formularioa bidaltzeko
-            $('#form-reserva').submit(function(e) {
-                e.preventDefault(); 
-                var fechaEntrada = $('#checkin').val();
-                var fechaSalida = $('#checkout').val();
-
-                if (fechaEntrada === '' || fechaSalida === '') {
-                    alert('Mesedez, hautatu data guztiak.');
-                    return;
-                }
-
-                // Erreserba konfirmazio orrira bidali
-                <?php if (isset($_SESSION['usuario_id'])): ?>
-                    window.location.href = 'erosketa.php?fecha_entrada=' + fechaEntrada + '&fecha_salida=' + fechaSalida;
-                <?php else: ?>
-                    // Erabiltzailea ez bada logeatuta, login orrira bidali
-                    window.location.href = 'login.php';
-                <?php endif; ?>
-            });
-        });
-    </script>
     <?php include 'footer.php'; ?>
 </body>
 </html>
