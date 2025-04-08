@@ -14,6 +14,7 @@ if (session_status() == PHP_SESSION_NONE) {
         <a href="erreserbak.php">Erreserbak</a>
         <a href="zerbitzuak.php">Zerbitzuak</a>
         <a href="kontaktuak.php">Kontaktua</a>
+        <a href="koloreAldaketa.php">Koloreak Aldatu</a>
  
         <?php if (isset($_SESSION['idBezeroa'])): ?>
             <div class="user-info">

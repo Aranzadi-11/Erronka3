@@ -5,9 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotela</title>
     <link rel="stylesheet" type="text/css" href="../public/styles.css">
+    <script defer src="../public/scripts.js"></script>
 </head>
 <body>
-<?php include 'header.php'; ?>
-<?php include 'footer.php'; ?>
+ 
+    <?php include 'header.php'; ?>
+ 
+    <!-- Títulua -->
+    <h1>Hotelaren Erreserbak</h1>
+ 
+    <!-- Erabiltzailea erregistratuta ez badago -->
+    <?php
+    if (!isset($_SESSION['idBezeroa'])) {
+        echo '<div style="text-align: center; margin-top: 20px;">
+                <p>Zure erreserbak ikusteko erregistratu zaitez.</p>
+                <a href="login.php"><button type="submit">Login</button></a>
+              </div>';
+    } else {
+        include 'dbKonexioa.php';
+        $user_id = $_SESSION['idBezeroa'];
+ 
+        // Reserbak eskuratzeko SQL kontsulta
+        $sql = "SELECT E.idErreserba, L.izena AS logelaIzena, B.erabiltzaileIzena, E.erreserbaEguna, E.sarreraEguna, E.irteeraEguna, E.sarreraOrdua, E.irteeraOrdua, E.iruzkina, E.prezioa 
+                FROM Erreserbak E 
+                JOIN Logelak L ON E.idLogela = L.idLogela 
+                JOIN Bezeroak B ON E.idBezeroa = B.idBezeroa 
+                WHERE E.idBezeroa = $user_id";
+        $result = $conn->query($sql);
+ 
+        // Erreserbak aurkitu ez badira mezua
+        if ($result->num_rows == 0) {
+            echo '<div style="text-align: center; margin-top: 20px;">
+                    <p>Ez duzu erreserbarik kontu honetan.</p>
+                  </div>';
+        } else {
+            echo '<div id="booking-container">';
+ 
+            // Erreserbak irudikatzea
+            while($row = $result->fetch_assoc()) {
+                echo '<div class="booking">';  
+                echo '<div class="booking-details">';
+                echo '<p><strong>Erreserba Zenbakia: ' . $row["idErreserba"] . '</strong></p>';
+                echo '<p>Logela Izena: ' . $row["logelaIzena"] . '</p>';
+                echo '<p>Bezeroa Izena: ' . $row["erabiltzaileIzena"] . '</p>';
+                echo '<p>Erreserba Eguna: ' . $row["erreserbaEguna"] . '</p>';
+                echo '<p>Sarrera Eguna: ' . $row["sarreraEguna"] . '</p>';
+                echo '<p>Irteera Eguna: ' . $row["irteeraEguna"] . '</p>';
+                echo '<p>Sarrera Ordua: ' . $row["sarreraOrdua"] . '</p>';
+                echo '<p>Irteera Ordua: ' . $row["irteeraOrdua"] . '</p>';
+                echo '<p>Iruzkina: ' . $row["iruzkina"] . '</p>';
+                echo '<p><strong>Prezioa: ' . $row["prezioa"] . '€</strong></p>';
+                echo '</div>';
+                echo '</div>';
+            }
+
+            echo '<div style="text-align: center; margin-top: 20px;">
+                    <p>Zure erreserbak editatzeko gure aplikazioa instalatu.</p>
+                  </div>';
+ 
+            echo '</div>';
+        }
+ 
+        $conn->close(); // Datu basearekin lotura itxi
+    }
+    ?>
+ 
+    <?php include 'footer.php'; ?>
 </body>
 </html>
