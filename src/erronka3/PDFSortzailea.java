@@ -35,14 +35,14 @@ public class PDFSortzailea {
         gbc.gridx = 0; gbc.gridy = 1;
         panel.add(new JLabel("Erabiltzaile izena:"), gbc);
         gbc.gridx = 1;
-        JComboBox<String> bezeroCombo = new JComboBox<>(new String[]{});  // Inicializamos el combo vacío
+        JComboBox<String> bezeroCombo = new JComboBox<>(new String[]{}); 
         panel.add(bezeroCombo, gbc);
 
         //Erreserba eguna
         gbc.gridx = 0; gbc.gridy = 2;
         panel.add(new JLabel("Erreserba eguna:"), gbc);
         gbc.gridx = 1;
-        JComboBox<String> dataCombo = new JComboBox<>(new String[]{});  // Inicializamos el combo vacío
+        JComboBox<String> dataCombo = new JComboBox<>(new String[]{});  
         panel.add(dataCombo, gbc);
 
         //Logela aukeratzean, bezeroen kutxa eguneratu

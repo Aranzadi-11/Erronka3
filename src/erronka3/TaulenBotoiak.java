@@ -58,6 +58,11 @@ public class TaulenBotoiak {
                         PDFSortzailea.formularioaErakutsi();
                     }
                 }));
+                botoiakPanel.add(botoiaSortu("Ezabatu", new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        ezabatuErregistroa("idErreserba");
+                    }
+                }));
                 break;
             case "logelak":
                 botoiakPanel.add(botoiaSortu("Gehitu", new ActionListener() {
