@@ -6,21 +6,22 @@
     <title>Hotela</title>
     <link rel="stylesheet" type="text/css" href="../public/styles.css">
     <script defer src="../public/scripts.js"></script>
+    <?php include 'layout.php'; ?>
 </head>
 <body>
 
     <?php include 'header.php'; ?>
 
     <!-- Títulua -->
-    <h1 style="text-align: center; margin-top: 20px;">Hotelaren Zerbitzuak</h1>
+    <h1 style="text-align: center; margin-top: 20px;"><?= trans("Hotelaren Zerbitzuak") ?></h1>
 
     <!-- Prezioaren arabera ordenatzeko filtroa -->
     <div style="text-align: center; margin-top: 20px;">
     <form method="GET">
-        <label for="ordenatu">Ordenatu prezioaren arabera:</label>
+        <label for="ordenatu"><?= trans("Ordenatu prezioaren arabera") ?>:</label>
         <select name="ordenatu" id="ordenatu" onchange="this.form.submit()">
-            <option value="asc" <?php echo (isset($_GET['ordenatu']) && $_GET['ordenatu'] == 'asc') ? 'selected' : ''; ?>>Prezio baxuenetik altuenera</option>
-            <option value="desc" <?php echo (isset($_GET['ordenatu']) && $_GET['ordenatu'] == 'desc') ? 'selected' : ''; ?>>Prezio altuenetik baxuenera</option>
+            <option value="asc" <?php echo (isset($_GET['ordenatu']) && $_GET['ordenatu'] == 'asc') ? 'selected' : ''; ?>><?= trans("Prezio baxuenetik altuenera") ?></option>
+            <option value="desc" <?php echo (isset($_GET['ordenatu']) && $_GET['ordenatu'] == 'desc') ? 'selected' : ''; ?>><?= trans("Prezio altuenetik baxuenera") ?></option>
         </select>
     </form>
 
@@ -51,7 +52,7 @@
                 echo '<div class="service">';  
                 echo '<h2>' . $row["izena"] . '</h2>'; // Zerbitzuaren izena
                 echo '<div class="service-image">'; 
-                echo '<img src="' . $row["argazkia"] . '" alt="Zerbitzuaren argazkia" style="width: 400px; height: 250px;">'; 
+                echo '<img src="' . $row["argazkia"] . '" alt="' . trans("Zerbitzuaren argazkia") . '" style="width: 400px; height: 250px;">'; 
                 echo '</div>';
                 echo '<div class="service-details">'; // Zerbitzuaren xehetasunak
                 echo '<p>' . $row["deskribapena"] . '</p>';

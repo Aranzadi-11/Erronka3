@@ -9,7 +9,7 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
 } else {
-    echo "<p>Ez da logelarik aurkitu.</p>";
+    echo "<p>" . trans("Ez da logelarik aurkitu.") . "</p>";
     exit();
 }
  
@@ -22,12 +22,14 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logela - <?php echo $row["izena"]; ?></title>
+    
     <link rel="stylesheet" type="text/css" href="../public/styles.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script defer src="../public/scripts.js"></script>
     <?php include 'header.php'; ?>
+    <?php include 'layout.php'; ?>
     <script>
     $(document).ready(function() {
         var idLogela = <?php echo $idLogela; ?>;
@@ -128,7 +130,7 @@ $conn->close();
                     (checkout > start && checkout < end) ||
                     (checkin < start && checkout > end)
                 ) {
-                    alert("Ezin dira aukeratu egiten diren datak. Mesedez, hautatu beste data batzuk.");
+                    alert("<?= trans('Ezin dira aukeratu egiten diren datak. Mesedez, hautatu beste data batzuk.') ?>");
                     event.preventDefault(); // Formularioa ez da bidaltzen
                     return false;
                 }
@@ -144,11 +146,11 @@ $conn->close();
  
         <div class="room-images">
             <div class="image-gallery">
-                <img src="<?php echo $row["irudia"]; ?>" alt="Logelaren irudia" class="room-main-image">
+                <img src="<?php echo $row["irudia"]; ?>" alt="<?= trans("Logelaren irudia") ?>" class="room-main-image">
                 <?php
                 for ($i = 1; $i <= 5; $i++) {
                     if (!empty($row["irudia$i"])) {
-                        echo '<img src="' . $row["irudia$i"] . '" alt="Logelaren irudia" class="room-gallery-image">';
+                        echo '<img src="' . $row["irudia$i"] . '" alt="' . trans("Logelaren irudia") . '" class="room-gallery-image">';
                     }
                 }
                 ?>
@@ -156,35 +158,35 @@ $conn->close();
         </div>
  
         <div class="room-details">
-            <p class="room-description"><strong>Prezioa: </strong><?php echo $row["prezioa"]; ?>€ / gaua</p>
-            <p class="room-description"><strong>Deskripzioa: </strong> <?php echo $row["deskripzioa"]; ?></p>
-            <p class="room-description"><strong>Kapazitatea: </strong> <?php echo $row["gelaEdukiera"]; ?> pertsonentzako</p>
+            <p class="room-description"><strong><?= trans("Prezioa") ?>: </strong><?php echo $row["prezioa"]; ?>€ / <?= trans("gau") ?></p>
+            <p class="room-description"><strong><?= trans("Deskripzioa") ?>: </strong> <?php echo $row["deskripzioa"]; ?></p>
+            <p class="room-description"><strong><?= trans("Kapazitatea") ?>: </strong> <?php echo $row["gelaEdukiera"]; ?> <?= trans("pertsonentzako") ?></p>
  
-            <p class="room-description"><strong>Ezaugarriak:</strong></p>
+            <p class="room-description"><strong><?= trans("Ezaugarriak") ?>:</strong></p>
             <ul class="features-list">
                 <?php
-                if ($row["balkoia"]) echo "<li><img src='../public/balkoia.png' style='width: 30px; height: 30px;'> Balkoia</li>";
-                if ($row["sukaldea"]) echo "<li><img src='../public/sukaldea.png' style='width: 30px; height: 30px;'> Sukaldea</li>";
-                if ($row["telebista"]) echo "<li><img src='../public/telebista.png' style='width: 30px; height: 30px;'> Telebista</li>";
-                if ($row["sofa_ohea"]) echo "<li><img src='../public/sofa-ohea.png' style='width: 30px; height: 30px;'> Sofa-Ohea</li>";
+                if ($row["balkoia"]) echo "<li><img src='../public/balkoia.png' style='width: 30px; height: 30px;'> " . trans("Balkoia") . "</li>";
+                if ($row["sukaldea"]) echo "<li><img src='../public/sukaldea.png' style='width: 30px; height: 30px;'> " . trans("Sukaldea") . "</li>";
+                if ($row["telebista"]) echo "<li><img src='../public/telebista.png' style='width: 30px; height: 30px;'> " . trans("Telebista") . "</li>";
+                if ($row["sofa_ohea"]) echo "<li><img src='../public/sofa-ohea.png' style='width: 30px; height: 30px;'> " . trans("Sofa-Ohea") . "</li>";
                 ?>
             </ul>
         </div>
  
         <div class="room-reservation">
-            <h3>Erreserba egin</h3>
+            <h3><?= trans("Erreserba egin") ?></h3>
             <form id="form-reserva" action="erosketa.php" method="GET">
                 <input type="hidden" name="idLogela" value="<?php echo $row["idLogela"]; ?>">
                 <input type="hidden" name="prezioa" value="<?php echo $row["prezioa"]; ?>">
                 <input type="hidden" name="izena" value="<?php echo $row["izena"]; ?>">
  
-                <label for="checkin">Sarrera data:</label>
+                <label for="checkin"><?= trans("Sarrera data") ?>:</label>
                 <input type="text" id="checkin" name="checkin" required readonly>
  
-                <label for="checkout">Irteera data:</label>
+                <label for="checkout"><?= trans("Irteera data") ?>:</label>
                 <input type="text" id="checkout" name="checkout" required readonly>
  
-                <button type="submit" id="confirmar-fechas">Erreserbatu</button>
+                <button type="submit" id="confirmar-fechas"><?= trans("Erreserbatu") ?></button>
             </form>
         </div>
     </div>

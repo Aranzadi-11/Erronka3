@@ -6,20 +6,21 @@
     <title>Hotela</title>
     <link rel="stylesheet" type="text/css" href="../public/styles.css">
     <script defer src="../public/scripts.js"></script>
+    <?php include 'layout.php'; ?>
 </head>
 <body>
  
     <?php include 'header.php'; ?>
  
     <!-- Títulua -->
-    <h1>Hotelaren Erreserbak</h1>
+    <h1><?= trans("Hotelaren Erreserbak") ?></h1>
  
     <!-- Erabiltzailea erregistratuta ez badago -->
     <?php
     if (!isset($_SESSION['idBezeroa'])) {
         echo '<div style="text-align: center; margin-top: 20px;">
-                <p>Zure erreserbak ikusteko erregistratu zaitez.</p>
-                <a href="login.php"><button type="submit">Login</button></a>
+                <p>' . trans("Zure erreserbak ikusteko erregistratu zaitez.") . '</p>
+                <a href="login.php"><button type="submit">' . trans("Login") . '</button></a>
               </div>';
     } else {
         include 'dbKonexioa.php';
@@ -36,7 +37,7 @@
         // Erreserbak aurkitu ez badira mezua
         if ($result->num_rows == 0) {
             echo '<div style="text-align: center; margin-top: 20px;">
-                    <p>Ez duzu erreserbarik kontu honetan.</p>
+                    <p>' . trans("Ez duzu erreserbarik kontu honetan.") . '</p>
                   </div>';
         } else {
             echo '<div id="booking-container">';
@@ -45,22 +46,22 @@
             while($row = $result->fetch_assoc()) {
                 echo '<div class="booking">';  
                 echo '<div class="booking-details">';
-                echo '<p><strong>Erreserba Zenbakia: ' . $row["idErreserba"] . '</strong></p>';
-                echo '<p>Logela Izena: ' . $row["logelaIzena"] . '</p>';
-                echo '<p>Bezeroa Izena: ' . $row["erabiltzaileIzena"] . '</p>';
-                echo '<p>Erreserba Eguna: ' . $row["erreserbaEguna"] . '</p>';
-                echo '<p>Sarrera Eguna: ' . $row["sarreraEguna"] . '</p>';
-                echo '<p>Irteera Eguna: ' . $row["irteeraEguna"] . '</p>';
-                echo '<p>Sarrera Ordua: ' . $row["sarreraOrdua"] . '</p>';
-                echo '<p>Irteera Ordua: ' . $row["irteeraOrdua"] . '</p>';
-                echo '<p>Iruzkina: ' . $row["iruzkina"] . '</p>';
-                echo '<p><strong>Prezioa: ' . $row["prezioa"] . '€</strong></p>';
+                echo '<p><strong>' . trans("Erreserba Zenbakia") . ': ' . $row["idErreserba"] . '</strong></p>';
+                echo '<p>' . trans("Logela Izena") . ': ' . $row["logelaIzena"] . '</p>';
+                echo '<p>' . trans("Bezeroa Izena") . ': ' . $row["erabiltzaileIzena"] . '</p>';
+                echo '<p>' . trans("Erreserba Eguna") . ': ' . $row["erreserbaEguna"] . '</p>';
+                echo '<p>' . trans("Sarrera Eguna") . ': ' . $row["sarreraEguna"] . '</p>';
+                echo '<p>' . trans("Irteera Eguna") . ': ' . $row["irteeraEguna"] . '</p>';
+                echo '<p>' . trans("Sarrera Ordua") . ': ' . $row["sarreraOrdua"] . '</p>';
+                echo '<p>' . trans("Irteera Ordua") . ': ' . $row["irteeraOrdua"] . '</p>';
+                echo '<p>' . trans("Iruzkina") . ': ' . $row["iruzkina"] . '</p>';
+                echo '<p><strong>' . trans("Prezioa") . ': ' . $row["prezioa"] . '€</strong></p>';
                 echo '</div>';
                 echo '</div>';
             }
 
             echo '<div style="text-align: center; margin-top: 20px;">
-                    <p>Zure erreserbak editatzeko gure aplikazioa instalatu.</p>
+                    <p>' . trans("Zure erreserbak editatzeko gure aplikazioa instalatu.") . '</p>
                   </div>';
  
             echo '</div>';

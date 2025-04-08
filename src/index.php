@@ -6,27 +6,26 @@
     <title>Hotela</title>
     <link rel="stylesheet" type="text/css" href="../public/styles.css">
     <script defer src="../public/scripts.js"></script>
+    <?php include 'layout.php'; ?>
 </head>
 <body>
  
     <?php include 'header.php'; ?>
  
-    <!-- Títulua -->
-    <h1>Hotelaren Logelak</h1>
+    <h1><?= trans("Hotelaren Logelak") ?></h1>
  
-    <!-- Filtroa pertsonen kopuruaren arabera -->
     <div style="text-align: center; margin-top: 20px;">
         <form method="GET" action="">
-            <label for="kopuruaIzenburu">Pertsonen kopurua: </label>
+            <label for="kopuruaIzenburu"><?= trans("Pertsonen kopurua: ") ?></label>
             <select name="kopurua" id="kopurua">
-                <option value="-">- Gela guztiak -</option>
-                <option value="2">2 pertsonentzat</option>
-                <option value="3">3 pertsonentzat</option>
-                <option value="4">4 pertsonentzat</option>
-                <option value="5">5 pertsonentzat</option>
-                <option value="6">6 pertsonentzat</option>
+                <option value="-">- <?= trans("Gela guztiak") ?> -</option>
+                <option value="2"><?= trans("2 pertsonentzat") ?></option>
+                <option value="3"><?= trans("3 pertsonentzat") ?></option>
+                <option value="4"><?= trans("4 pertsonentzat") ?></option>
+                <option value="5"><?= trans("5 pertsonentzat") ?></option>
+                <option value="6"><?= trans("6 pertsonentzat") ?></option>
             </select>
-            <button type="submit">Bilatu</button>
+            <button type="submit"><?= trans("Bilatu") ?></button>
             <br><br>
  
             <!-- Karakteristikak -->
@@ -37,9 +36,8 @@
         </form>
     </div>
  
-    <!-- Mensaje si no se encuentran habitaciones -->
     <div id="no-rooms-message">
-        <p>Ez da logelarik aurkitu ezaugarri hauekin</p>
+        <p><?= trans("Ez da logelarik aurkitu ezaugarri hauekin") ?></p>
     </div>
  
     <div id="rooms-container">
@@ -82,7 +80,6 @@
         // Logelak erakutsi
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
-                // Filtrar imágenes
                 $images = array_filter([$row["irudia"], $row["irudia1"], $row["irudia2"], $row["irudia3"], $row["irudia4"], $row["irudia5"]]);
  
                 echo '<div class="room">';  
@@ -91,7 +88,7 @@
                 if (count($images) > 1) {
                     echo '<button class="prev">&#9664;</button>'; // Aurreko irudia ikusteko botoia
                 }
-                echo '<img src="' . $row["irudia"] . '" alt="Logelaren irudia" class="carousel-image" style="width: 400px; height: 250px;">';
+                echo '<img src="' . $row["irudia"] . '" alt="' . trans("Logelaren irudia") . '" class="carousel-image" style="width: 400px; height: 250px;">';
                 if (count($images) > 1) {
                     echo '<button class="next">&#9654;</button>'; // Hurrengo irudia ikusteko botoia
                 }
@@ -99,9 +96,9 @@
                 echo '</div>';
                 echo '<div class="room-details">'; // Logelaren xehetasunak
                 echo '<div class="logela-links a">';
-                echo '<h2><a href="logela.php?idLogela=' . $row["idLogela"] . '" title="Hemen klikatu informazio gehiago lortzeko">' . $row["izena"] . '</a></h2>';
+                echo '<h2><a href="logela.php?idLogela=' . $row["idLogela"] . '" title="' . trans("Hemen klikatu informazio gehiago lortzeko") . '">' . $row["izena"] . '</a></h2>';
                 echo '</div>';
-                echo '<p><strong>' . $row["gelaEdukiera"] . ' pertsonentzako</strong></p>';
+                echo '<p><strong>' . $row["gelaEdukiera"] . ' ' . trans("pertsonentzako") . '</strong></p>';
                
                 // Deskripzioa logelaren azpian
                 echo '<p>' . $row["deskripzioa"] . '</p>';
@@ -115,13 +112,13 @@
                 echo '</p>';
                
                 // Logelaren prezioa eskuinean erakusteko
-                echo '<p class="room-price" style="text-align: right; font-weight: bold;">' . $row["prezioa"] . '€ / gaua</p>';
+                echo '<p class="room-price" style="text-align: right; font-weight: bold;">' . $row["prezioa"] . '€ / ' . trans("gau") . '</p>';
  
                 echo '</div>';
                 echo '</div>';
             }
         } else {
-            echo "<script>document.getElementById('no-rooms-message').style.display = 'block';</script>"; // Mostrar el mensaje si no se encuentran habitaciones
+            echo "<script>document.getElementById('no-rooms-message').style.display = 'block';</script>"; 
         }
  
         $conn->close(); // Datu basea itxi
@@ -131,5 +128,3 @@
     <?php include 'footer.php'; ?>
 </body>
 </html>
- 
- 
