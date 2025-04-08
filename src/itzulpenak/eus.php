@@ -1,6 +1,0 @@
-<?php
-
-//euskara
-return [
-
-];

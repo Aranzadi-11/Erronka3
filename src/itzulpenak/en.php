@@ -1,9 +1,0 @@
-<?php
-
-//ingelesa
-return [
-
-];
-
-
-    

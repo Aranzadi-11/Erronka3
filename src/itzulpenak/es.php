@@ -1,9 +1,0 @@
-<?php
-
-//gaztelania
-return [
-
-];
-
-
-    
