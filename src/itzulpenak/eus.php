@@ -74,6 +74,37 @@ return [
     "Ordenatu prezioaren arabera" => "Ordenatu prezioaren arabera",
     "Prezio baxuenetik altuenera" => "Prezio baxuenetik altuenera",
     "Prezio altuenetik baxuenera" => "Prezio altuenetik baxuenera",
-    "Zerbitzuaren argazkia" => "Zerbitzuaren argazkia"
+    "Zerbitzuaren argazkia" => "Zerbitzuaren argazkia",
+
+    //Kontaktuak
+    "Hotelaren Informazioa" => "Hotelaren Informazioa",
+    "Gurekin harremanetan jar zaitez" => "Gurekin harremanetan jar zaitez",
+    "Gure sare sozialak" => "Gure sare sozialak",
+
+    //Web Konfigurazioa
+    "Kolore Aldaketa" => "Kolore Aldaketa",
+    "Header kolorea" => "Header kolorea",
+    "Footer kolorea" => "Footer kolorea",
+    "Gorde" => "Gorde",
+
+    //Login
+    "Logeatu" => "Logeatu",
+    "Erabiltzaile izena edo pasahitz okerrak." => "Erabiltzaile izena edo pasahitz okerrak.",
+    "Erabiltzailea ez da aurkitu." => "Erabiltzailea ez da aurkitu.",
+    "Erabiltzaile izena" => "Erabiltzaile izena",
+    "Pasahitza" => "Pasahitza",
+    "Sartu" => "Sartu",
+    "Ez daukazula konturik?" => "Ez daukazula konturik?",
+    "Erregistratu hemen" => "Erregistratu hemen",
+
+    //Erregistratu
+    "Erregistratu" => "Erregistratu",
+    "Erabiltzailea erregistratuta dago." => "Erabiltzailea erregistratuta dago.",
+    "Akats bat gertatu da erregistroa egitean." => "Akats bat gertatu da erregistroa egitean.",
+    "Izena" => "Izena",
+    "Abizena" => "Abizena",
+    "Jaiotze eguna" => "Jaiotze eguna",
+    "Kontua duzu?" => "Kontua duzu?",
+    "Logeatu hemen" => "Logeatu hemen"
 ];
 

@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../public/styles.css">
     <script defer src="../public/scripts.js"></script>
     <?php include 'layout.php'; ?>
+
 </head>
 <body>
  

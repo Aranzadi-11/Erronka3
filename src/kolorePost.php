@@ -23,23 +23,23 @@ $footerColor = isset($config->footerColor) ? (string) $config->footerColor : $de
 </head>
 <body>
     <div class="color-change-container">
-        <h1>Kolore Aldaketa</h1>
+        <h1><?= trans("Kolore Aldaketa") ?></h1>
         <br><br>
         <form action="koloreaGorde.php" method="POST" class="color-change-form">
             <input type="hidden" value="changeConfig" name="action"/>
             <div class="form-group">
-                <label for="headerColor">Header kolorea:</label>
+                <label for="headerColor"><?= trans("Header kolorea") ?>:</label>
                 <br>
                 <input type="color" id="headerColor" name="headerColor" value="<?= $headerColor ?>" />
             </div>
            
             <div class="form-group">
-                <label for="footerColor">Footer kolorea:</label>
+                <label for="footerColor"><?= trans("Footer kolorea") ?>:</label>
                 <br>
                 <input type="color" id="footerColor" name="footerColor" value="<?= $footerColor ?>" />
             </div>
             <br>    
-            <button type="submit" class="submit-button">Gorde</button>
+            <button type="submit" class="submit-button"><?= trans("Gorde") ?></button>
         </form>
     </div>
     <?php require_once "footer.php"; ?>

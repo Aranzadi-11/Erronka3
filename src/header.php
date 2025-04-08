@@ -10,12 +10,14 @@ if (isset($_POST["selectedLang"])) {
 }
 ?>
 <header class="navbar">
+    <button class="menu-toggle" id="menuToggle">&#9776;</button>
+
     <div class="logo-container">
         <img src="../public/BBC_Grand_Hotel_Logo.png" alt="BBC Grand Hotel logoa">
         <h1>BBC GRAND HOTEL</h1>
     </div>
 
-    <nav class="nav-links">
+    <nav class="nav-links" id="navLinks">
         <a href="index.php"><?= trans("Logelak") ?></a>
         <a href="erreserbak.php"><?= trans("Erreserbak") ?></a>
         <a href="zerbitzuak.php"><?= trans("Zerbitzuak") ?></a>
@@ -53,27 +55,36 @@ if (isset($_POST["selectedLang"])) {
     </nav>
 </header>
 
+
 <script>
-document.getElementById('languageSwitcher').addEventListener('click', function(e) {
-    e.preventDefault();
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
 
-    const img = document.getElementById('langIcon');
-    const langInput = document.getElementById('selectedLangInput');
-    let currentLang = img.src.split("/").pop();
-    let nextLang = "";
+    menuToggle.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+    });
 
-    if (currentLang === "euskera.png") {
-        img.src = "../public/espanol.png";
-        nextLang = "es";
-    } else if (currentLang === "espanol.png") {
-        img.src = "../public/ingles.png";
-        nextLang = "en";
-    } else {
-        img.src = "../public/euskera.png";
-        nextLang = "eus";
-    }
+    document.getElementById('languageSwitcher').addEventListener('click', function(e) {
+        e.preventDefault();
 
-    langInput.value = nextLang;
-    document.getElementById('langForm').submit();
-});
+        const img = document.getElementById('langIcon');
+        const langInput = document.getElementById('selectedLangInput');
+        let currentLang = img.src.split("/").pop();
+        let nextLang = "";
+
+        if (currentLang === "euskera.png") {
+            img.src = "../public/espanol.png";
+            nextLang = "es";
+        } else if (currentLang === "espanol.png") {
+            img.src = "../public/ingles.png";
+            nextLang = "en";
+        } else {
+            img.src = "../public/euskera.png";
+            nextLang = "eus";
+        }
+
+        langInput.value = nextLang;
+        document.getElementById('langForm').submit();
+    });
 </script>
+

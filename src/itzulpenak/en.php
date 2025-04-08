@@ -74,5 +74,37 @@ return [
     "Ordenatu prezioaren arabera" => "Sort by price",
     "Prezio baxuenetik altuenera" => "Price low to high",
     "Prezio altuenetik baxuenera" => "Price high to low",
-    "Zerbitzuaren argazkia" => "Service image"
+    "Zerbitzuaren argazkia" => "Service image",
+    "Gela Garbiketa" => "Room Cleaning",
+
+    //Kontaktuak
+    "Hotelaren Informazioa" => "Hotel Information",
+    "Gurekin harremanetan jar zaitez" => "Contact us",
+    "Gure sare sozialak" => "Our social networks",
+
+    //Web Konfigurazioa
+    "Kolore Aldaketa" => "Color Change",
+    "Header kolorea" => "Header color",
+    "Footer kolorea" => "Footer color",
+    "Gorde" => "Save",
+
+    //Login
+    "Logeatu" => "Login",
+    "Erabiltzaile izena edo pasahitz okerrak." => "Incorrect username or password.",
+    "Erabiltzailea ez da aurkitu." => "User not found.",
+    "Erabiltzaile izena" => "Username",
+    "Pasahitza" => "Password",
+    "Sartu" => "Enter",
+    "Ez daukazula konturik?" => "Don't have an account?",
+    "Erregistratu hemen" => "Register here",
+
+    //Erregistratu
+    "Erregistratu" => "Register",
+    "Erabiltzailea erregistratuta dago." => "User is already registered.",
+    "Akats bat gertatu da erregistroa egitean." => "An error occurred during registration.",
+    "Izena" => "First name",
+    "Abizena" => "Last name",
+    "Jaiotze eguna" => "Date of birth",
+    "Kontua duzu?" => "Already have an account?",
+    "Logeatu hemen" => "Login here"
 ];

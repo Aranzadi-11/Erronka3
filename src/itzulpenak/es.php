@@ -74,5 +74,36 @@ return [
     "Ordenatu prezioaren arabera" => "Ordenar por precio",
     "Prezio baxuenetik altuenera" => "Precio de menor a mayor",
     "Prezio altuenetik baxuenera" => "Precio de mayor a menor",
-    "Zerbitzuaren argazkia" => "Imagen del servicio"
+    "Zerbitzuaren argazkia" => "Imagen del servicio",
+
+    //Kontaktuak
+    "Hotelaren Informazioa" => "Información del Hotel",
+    "Gurekin harremanetan jar zaitez" => "Ponte en contacto con nosotros",
+    "Gure sare sozialak" => "Nuestras redes sociales",
+
+    //Web Konfigurazioa
+    "Kolore Aldaketa" => "Cambio de Color",
+    "Header kolorea" => "Color del encabezado",
+    "Footer kolorea" => "Color del pie de página",
+    "Gorde" => "Guardar",
+
+    //Login
+    "Logeatu" => "Iniciar sesión",
+    "Erabiltzaile izena edo pasahitz okerrak." => "Nombre de usuario o contraseña incorrectos.",
+    "Erabiltzailea ez da aurkitu." => "Usuario no encontrado.",
+    "Erabiltzaile izena" => "Nombre de usuario",
+    "Pasahitza" => "Contraseña",
+    "Sartu" => "Entrar",
+    "Ez daukazula konturik?" => "¿No tienes una cuenta?",
+    "Erregistratu hemen" => "Regístrate aquí",
+
+    //Erregistratu
+    "Erregistratu" => "Registrarse",
+    "Erabiltzailea erregistratuta dago." => "El usuario ya está registrado.",
+    "Akats bat gertatu da erregistroa egitean." => "Ocurrió un error durante el registro.",
+    "Izena" => "Nombre",
+    "Abizena" => "Apellido",
+    "Jaiotze eguna" => "Fecha de nacimiento",
+    "Kontua duzu?" => "¿Ya tienes una cuenta?",
+    "Logeatu hemen" => "Inicia sesión aquí"
 ];
