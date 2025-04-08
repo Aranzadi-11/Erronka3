@@ -22,28 +22,26 @@ $footerColor = isset($config->footerColor) ? (string) $config->footerColor : $de
     <?php include 'layout.php'; ?>
 </head>
 <body>
-    <div class="konifigurazioa">
+    <div class="color-change-container">
         <h1>Kolore Aldaketa</h1>
         <br><br>
-        <form action="koloreaGorde.php" method="POST">
+        <form action="koloreaGorde.php" method="POST" class="color-change-form">
             <input type="hidden" value="changeConfig" name="action"/>
-            <div>
+            <div class="form-group">
                 <label for="headerColor">Header kolorea:</label>
                 <br>
                 <input type="color" id="headerColor" name="headerColor" value="<?= $headerColor ?>" />
             </div>
            
-            <div>
+            <div class="form-group">
                 <label for="footerColor">Footer kolorea:</label>
                 <br>
                 <input type="color" id="footerColor" name="footerColor" value="<?= $footerColor ?>" />
             </div>
             <br>    
-            <button type="submit">Gorde</button>
+            <button type="submit" class="submit-button">Gorde</button>
         </form>
     </div>
     <?php require_once "footer.php"; ?>
 </body>
 </html>
- 
- 

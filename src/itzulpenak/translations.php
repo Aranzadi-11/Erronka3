@@ -1,9 +1,7 @@
 <?php
 function trans($indexPhrase)
 {
- 
     static $tranlationsArray = array();
-
 
     if (isset($_SESSION["_LANGUAGE"]) && file_exists(APP_DIR . '/itzulpenak/' . $_SESSION["_LANGUAGE"] . '.php')) {
         $url = APP_DIR . '/itzulpenak/';
