@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logeatu'])) {
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
 
-        if (password_verify($pasahitza, $user['pasahitza'])) {
+        if ($pasahitza === $user['pasahitza']) {
             $_SESSION['idBezeroa'] = $user['idBezeroa'];
             $_SESSION['erabiltzaileIzena'] = $user['erabiltzaileIzena'];
             header('Location: index.php');

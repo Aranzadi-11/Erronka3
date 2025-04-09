@@ -5,11 +5,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['erregistratu'])) {
     $izena = $_POST['izena'];
     $abizena = $_POST['abizena'];
     $erabiltzaileIzena = $_POST['erabiltzaileIzena'];
-    $pasahitza = $_POST['pasahitza'];
+    $pasahitza = $_POST['pasahitza']; 
     $jaiotzeEguna = $_POST['jaiotzeEguna'];
     $emaila = $_POST['emaila'];
-
-    $hashed_password = password_hash($pasahitza, PASSWORD_DEFAULT);
 
     $stmt_check = $conn->prepare("SELECT * FROM bezeroak WHERE erabiltzaileIzena = ?");
     $stmt_check->bind_param("s", $erabiltzaileIzena);
@@ -21,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['erregistratu'])) {
     } else {
         $stmt_insert = $conn->prepare("INSERT INTO bezeroak (izena, abizena, erabiltzaileIzena, pasahitza, jaiotzeEguna, emaila)
                                        VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt_insert->bind_param("ssssss", $izena, $abizena, $erabiltzaileIzena, $hashed_password, $jaiotzeEguna, $emaila);
+        $stmt_insert->bind_param("ssssss", $izena, $abizena, $erabiltzaileIzena, $pasahitza, $jaiotzeEguna, $emaila);
 
         if ($stmt_insert->execute()) {
             header('Location: login.php');
@@ -37,6 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['erregistratu'])) {
     $conn->close();
 }
 ?>
+
 
  
  

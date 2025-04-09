@@ -172,6 +172,39 @@ $conn->close();
                 ?>
             </ul>
         </div>
+
+            <div class="room-comments">
+                <h3><?= trans("Bezeroen iruzkinak:") ?></h3>
+                <?php
+                include 'dbKonexioa.php';
+
+                // JOIN egiten dugu erabiltzaile izena lortzeko
+                $stmt = $conn->prepare("
+                    SELECT bezeroak.erabiltzaileIzena, erreserbak.iruzkina
+                    FROM erreserbak
+                    JOIN bezeroak ON erreserbak.idBezeroa = bezeroak.idBezeroa
+                    WHERE erreserbak.idLogela = ? AND erreserbak.iruzkina IS NOT NULL AND erreserbak.iruzkina != ''
+                ");
+                $stmt->bind_param("i", $idLogela);
+                $stmt->execute();
+                $result_iruzkinak = $stmt->get_result();
+
+                if ($result_iruzkinak->num_rows > 0) {
+                    while ($iruzkina = $result_iruzkinak->fetch_assoc()) {
+                        echo '<div class="comment-box">';
+                        echo '<div class="comment-header"><strong>' . htmlspecialchars($iruzkina["erabiltzaileIzena"]) . '</strong></div>';
+                        echo '<div class="comment-body">' . htmlspecialchars($iruzkina["iruzkina"]) . '</div>';
+                        echo '</div>';
+                    }
+                } else {
+                    echo "<p>" . trans("Ez dago iruzkinik.") . "</p>";
+                }
+
+                $stmt->close();
+                $conn->close();
+                ?>
+            </div>
+
  
         <div class="room-reservation">
             <h3><?= trans("Erreserba egin") ?></h3>
@@ -190,6 +223,7 @@ $conn->close();
             </form>
         </div>
     </div>
+
  
     <?php include 'footer.php'; ?>
 </body>

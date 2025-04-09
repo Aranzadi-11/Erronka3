@@ -68,6 +68,8 @@ return [
     "Sarrera data" => "Check-in date",
     "Irteera data" => "Check-out date",
     "Erreserbatu" => "Book now",
+    "Bezeroen iruzkinak:" => "Customer reviews:",
+    "Ez dago iruzkinik." => "No reviews yet.",
 
     //Zerbitzuak
     "Hotelaren Zerbitzuak" => "Hotel's Services",

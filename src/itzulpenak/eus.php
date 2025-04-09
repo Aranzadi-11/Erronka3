@@ -68,6 +68,8 @@ return [
     "Sarrera data" => "Sarrera data",
     "Irteera data" => "Irteera data",
     "Erreserbatu" => "Erreserbatu",
+    "Bezeroen iruzkinak:" => "Bezeroen iruzkinak:",
+    "Iruzkinak" => "Iruzkinak",
 
     //Zerbitzuak
     "Hotelaren Zerbitzuak" => "Hotelaren Zerbitzuak",
