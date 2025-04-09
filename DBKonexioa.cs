@@ -5,7 +5,7 @@ namespace BezeroenAPP
 {
     public class DBKonexioa
     {
-        private string connectionString = "Server=localhost;Database=erronka3;User Id=root;Password=;";
+        private string connectionString = "Server=172.16.237.120;Database=erronka3;User Id=Erronka;Password=Erronka3;";
 
         //Sortu konexioa
         public MySqlConnection GetConnection()
