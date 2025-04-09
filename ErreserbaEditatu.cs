@@ -37,6 +37,8 @@ namespace BezeroenAPP
                             {
                                 sarreraDataJatorrizkoa = Convert.ToDateTime(reader["sarreraEguna"]);
                                 irteeraDataJatorrizkoa = Convert.ToDateTime(reader["irteeraEguna"]);
+
+                                // Sarrera ordua ezarri
                                 if (reader["sarreraOrdua"] != DBNull.Value)
                                 {
                                     string sarreraOrdua = reader["sarreraOrdua"].ToString();
@@ -49,6 +51,8 @@ namespace BezeroenAPP
                                 {
                                     dtpSarreraOrdua.Value = sarreraDataJatorrizkoa;
                                 }
+
+                                // Irteera ordua ezarri
                                 if (reader["irteeraOrdua"] != DBNull.Value)
                                 {
                                     string irteeraOrdua = reader["irteeraOrdua"].ToString();
@@ -62,12 +66,39 @@ namespace BezeroenAPP
                                     dtpIrteeraOrdua.Value = irteeraDataJatorrizkoa;
                                 }
 
-                                DateTime currentDate = DateTime.Now;
-                                if (currentDate > irteeraDataJatorrizkoa.AddDays(1))
+                                // Egunaren arabera aukerak bistaratzea
+                                DateTime gaur = DateTime.Today;
+
+                                if (gaur < sarreraDataJatorrizkoa)
                                 {
+                                    // Egun bat edo gehiago sarrera eguna baino lehenago: bi ordu hautatzaileak
+                                    dtpSarreraOrdua.Visible = true;
+                                    lblSarreraOrdua.Visible = true;
+                                    dtpIrteeraOrdua.Visible = true;
+                                    lblIrteeraOrdua.Visible = true;
+                                    lblIruzkina.Visible = false;
+                                    txtIruzkina.Visible = false;
+                                }
+                                else if (gaur >= sarreraDataJatorrizkoa && gaur <= irteeraDataJatorrizkoa)
+                                {
+                                    // Sarrera eta irteera egun artean: soilik irteera ordua
+                                    dtpSarreraOrdua.Visible = false;
+                                    lblSarreraOrdua.Visible = false;
+                                    dtpIrteeraOrdua.Visible = true;
+                                    lblIrteeraOrdua.Visible = true;
+                                    lblIruzkina.Visible = false;
+                                    txtIruzkina.Visible = false;
+                                }
+                                else if (gaur > irteeraDataJatorrizkoa)
+                                {
+                                    // Irteera eguna igaro da: soilik iruzkina
                                     lblIruzkina.Visible = true;
                                     txtIruzkina.Visible = true;
                                     txtIruzkina.Text = reader["iruzkina"].ToString();
+                                    dtpSarreraOrdua.Visible = false;
+                                    lblSarreraOrdua.Visible = false;
+                                    dtpIrteeraOrdua.Visible = false;
+                                    lblIrteeraOrdua.Visible = false;
                                 }
                             }
                         }
@@ -82,22 +113,26 @@ namespace BezeroenAPP
 
         private void DataOrduHautatzaileakKonfiguratu()
         {
-            //Ordu formatua konfiguratu
+            // Ordu formatua konfiguratu
             dtpSarreraOrdua.Format = DateTimePickerFormat.Custom;
             dtpSarreraOrdua.CustomFormat = "HH:mm";
             dtpSarreraOrdua.ShowUpDown = true;
-            dtpSarreraOrdua.MinDate = DateTime.Today.AddHours(16); //Gutxieneko ordua: 16:00
-            dtpSarreraOrdua.MaxDate = DateTime.Today.AddHours(23).AddMinutes(30); //Gehienezko ordua: 23:30
+            dtpSarreraOrdua.MinDate = DateTime.Today.AddHours(16); // Gutxieneko ordua: 16:00
+            dtpSarreraOrdua.MaxDate = DateTime.Today.AddHours(23).AddMinutes(30); // Gehienezko ordua: 23:30
+
             dtpIrteeraOrdua.Format = DateTimePickerFormat.Custom;
             dtpIrteeraOrdua.CustomFormat = "HH:mm";
             dtpIrteeraOrdua.ShowUpDown = true;
-            dtpIrteeraOrdua.MinDate = DateTime.Today; //Gutxieneko ordua: 00:00
-            dtpIrteeraOrdua.MaxDate = DateTime.Today.AddHours(15); //Gehienezko ordua: 15:00
-            //Orduak 30 minutuko tarteetan egokitu
+            dtpIrteeraOrdua.MinDate = DateTime.Today; // Gutxieneko ordua: 00:00
+            dtpIrteeraOrdua.MaxDate = DateTime.Today.AddHours(15); // Gehienezko ordua: 15:00
+
+            // Orduak 30 minutuko tarteetan egokitu
             dtpSarreraOrdua.Value = OrduaEgokitu(dtpSarreraOrdua.Value);
             dtpIrteeraOrdua.Value = OrduaEgokitu(dtpIrteeraOrdua.Value);
+
             dtpSarreraOrdua.ValueChanged += (sender, e) =>
             {
+                // Ordua egokitu 30 minutuko tartera
                 dtpSarreraOrdua.Value = OrduaEgokitu(dtpSarreraOrdua.Value);
                 if (dtpSarreraOrdua.Value.Hour < 16 || dtpSarreraOrdua.Value.Hour > 23 ||
                    (dtpSarreraOrdua.Value.Hour == 23 && dtpSarreraOrdua.Value.Minute > 30))
@@ -105,8 +140,10 @@ namespace BezeroenAPP
                     dtpSarreraOrdua.Value = new DateTime(dtpSarreraOrdua.Value.Year, dtpSarreraOrdua.Value.Month, dtpSarreraOrdua.Value.Day, 16, 0, 0);
                 }
             };
+
             dtpIrteeraOrdua.ValueChanged += (sender, e) =>
             {
+                // Ordua egokitu 30 minutuko tartera
                 dtpIrteeraOrdua.Value = OrduaEgokitu(dtpIrteeraOrdua.Value);
                 if (dtpIrteeraOrdua.Value.Hour > 15)
                 {
@@ -117,7 +154,7 @@ namespace BezeroenAPP
 
         private DateTime OrduaEgokitu(DateTime data)
         {
-            //Minutuak 30eko multiploetara biribildu
+            // Minutuak 30 minutuko tartera biribildu
             int minutuak = data.Minute;
             int minutuEgokituak = (minutuak / 30) * 30;
             return new DateTime(data.Year, data.Month, data.Day, data.Hour, minutuEgokituak, 0);
@@ -125,6 +162,7 @@ namespace BezeroenAPP
 
         private void TxtIruzkina_TextChanged(object sender, EventArgs e)
         {
+            // Iruzkinaren luzera 255 karaktere baino gehiago bada, moztu
             if (txtIruzkina.Text.Length > 255)
             {
                 MessageBox.Show("255 baino karaktere gehiago jarri dituzu.", "Errorea", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -135,6 +173,7 @@ namespace BezeroenAPP
 
         private void TxtIruzkina_Leave(object sender, EventArgs e)
         {
+            // Irteeran karaktereak egiaztatu berriro
             if (txtIruzkina.Text.Length > 255)
             {
                 MessageBox.Show("255 baino karaktere gehiago jarri dituzu.", "Errorea", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -153,9 +192,10 @@ namespace BezeroenAPP
                     string query = "UPDATE erreserbak SET sarreraOrdua = @sarrera, irteeraOrdua = @irteera, iruzkina = @iruzkina WHERE idErreserba = @id";
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
-                        //Data formateatu MySQL-rako
+                        // Orduak formateatu MySQL-rako
                         string sarreraOrdua = sarreraDataJatorrizkoa.Date.Add(dtpSarreraOrdua.Value.TimeOfDay).ToString("yyyy-MM-dd HH:mm:ss");
                         string irteeraOrdua = irteeraDataJatorrizkoa.Date.Add(dtpIrteeraOrdua.Value.TimeOfDay).ToString("yyyy-MM-dd HH:mm:ss");
+
                         cmd.Parameters.AddWithValue("@sarrera", sarreraOrdua);
                         cmd.Parameters.AddWithValue("@irteera", irteeraOrdua);
                         cmd.Parameters.AddWithValue("@id", idErreserba);
@@ -171,6 +211,7 @@ namespace BezeroenAPP
 
                         cmd.ExecuteNonQuery();
                     }
+
                     MessageBox.Show("Aldaketak ongi gorde dira!", "Baieztapena", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }

@@ -52,7 +52,7 @@ namespace BezeroenAPP
                     if (count > 0){
 
                         //APP formularioa ireki
-                        APP nagusia = new APP(erabiltzaileIzena, pasahitza);
+                        APP nagusia = new APP(erabiltzaileIzena);
                         nagusia.Show();
                         this.Hide(); //Login formularioa ezkutatu
                     }

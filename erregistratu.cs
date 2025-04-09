@@ -1,28 +1,23 @@
 ﻿using System;
-
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows.Forms;
-
 using MySql.Data.MySqlClient;
 
 namespace BezeroenAPP
-
 {
-
     public partial class Erregistratu : Form
     {
         private DBKonexioa dbKonexioa;
 
         public Erregistratu()
-
         {
             InitializeComponent();
             dbKonexioa = new DBKonexioa(); //DBKonexioa klasea ireki
         }
 
         private void btnErregistratu_Click(object sender, EventArgs e)
-
         {
-
             //Datuak jaso
             string izena = txtIzena.Text;
             string abizena = txtAbizena.Text;
@@ -33,9 +28,7 @@ namespace BezeroenAPP
 
             //Datuen balidazioa
             if (string.IsNullOrWhiteSpace(izena) || string.IsNullOrWhiteSpace(abizena) || string.IsNullOrWhiteSpace(erabiltzaileIzena)
-
                 || string.IsNullOrWhiteSpace(pasahitza) || string.IsNullOrWhiteSpace(jaiotzeData) || string.IsNullOrWhiteSpace(emaila))
-
             {
                 MessageBox.Show("Mesedez, bete guztiak eremuak.", "Errorea", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -53,7 +46,7 @@ namespace BezeroenAPP
             {
                 MessageBox.Show("Emailak '@' izan behar du.", "Errorea", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }
+            };
 
             //Konexioa ireki
             MySqlConnection conn = dbKonexioa.GetConnection();
@@ -84,25 +77,23 @@ namespace BezeroenAPP
                         MessageBox.Show("Erabiltzailea gordeta", "Arrakasta", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         OpenLoginForm();
                     }
-
                     else
                     {
                         MessageBox.Show("Akatsa erabiltzailea sortzean", "Errorea", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-
             }
-
             catch (Exception ex)
             {
                 MessageBox.Show("Errorea: " + ex.Message, "Errorea", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
             finally
             {
                 conn.Close();
             }
         }
+
+      
 
         //Login formularioa ireki
         private void OpenLoginForm()

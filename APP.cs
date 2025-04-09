@@ -9,14 +9,12 @@ namespace BezeroenAPP
     public partial class APP : Form
     {
         private string userIzena;
-        private string userAbizena;
         private DBKonexioa db;
 
-        public APP(string izena, string abizena)
+        public APP(string izena)
         {
             InitializeComponent();
             this.userIzena = izena;
-            this.userAbizena = abizena;
             this.db = new DBKonexioa();
             HeaderEguneratu();
             ErreserbakKargatu();
@@ -24,7 +22,7 @@ namespace BezeroenAPP
 
         private void HeaderEguneratu()
         {
-            lblTitle.Text = $"Kaixo, {userIzena} {userAbizena}";
+            lblTitle.Text = $"Kaixo, {userIzena}";
         }
 
         private void ErreserbakKargatu()
